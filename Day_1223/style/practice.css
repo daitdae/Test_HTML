@@ -1,0 +1,16 @@
+div.content{
+    width: 800px;
+    margin: 0 auto; 
+}
+
+div.content>h2{
+    text-align: left;
+    background-color: lightblue;
+    color: black;
+    padding: 20px 0;
+}
+div.content>h4{
+    text-align: left;
+    color: blue;
+    padding: 20px 0;
+}

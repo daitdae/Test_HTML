@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>thymeleaf</title>
+</head>
+<body>
+    <h2>[ thymeleaf 문법 1 ]</h2>
+    <!-- 모델에 데이터를 넣어놔서 일단 데이터는 있는상태, 그걸 꺼내려면 thymeleaf를 사용 -->
+
+    <h3>* 값 출력</h3>
+
+    <!-- 가져온값 출력하려면 html 태그로 해서 $붙이고 중괄호 안에 변수명(컨트롤러에서 모델 어트리뷰트의 왼쪽거) 알지? -->
+    <p th:text="${str}">문자열 출력</p>
+    <p>[[${str}]]</p> 
+
+    <!-- 일부러 사이에 숫자 넣는 이유는 만약 타임리프가 동작을 안해도 이 숫자를 보고 안되는구나 하고 확인하기 위함 -->
+    <p th:text="${num}">0</p>
+
+    <p th:text="${person}"></p>
+
+    <p th:text="${person.id}"></p>
+
+    <p th:text="${person.name}"></p>
+
+    <!-- html 태그는 이렇게 그냥 보내면 안된다 (인식못함)-->
+    <p th:text="${tag}"></p> 
+
+    <!-- html 태그 보여주는 방법, 문자열에 포함된 html태그가 실행됨 -->
+    <p th:utext="${tag}"></p>
+
+    <p th:text="${url}"></p>
+
+    
+    <br>
+
+    <h3>* 주석</h3> 
+    타임리프 주석은 서버에서 처리가 됨(html주석에 중요한 내용 적어두면 안되지만 타임리프 주석은 됨)<br>
+    타임리프는 주석을 쓰면 타임리프가 실행이 안된다.<br>
+    html주석은 사용자들한테 보인다 타임리프 주석은 사용자들에게 전달조차 안된다<br>
+
+    일반 html주석<br>
+    <!-- <p th:text="${str}"></p> -->
+    <!-- <p>[[${str}]]</p>  -->
+
+    타임리프 주석 띄어쓰기 따짐 <br>
+    <!--/* <p th:text="${str}"></p> */-->
+    <!--/* <p>[[${str}]]</p>  */-->
+
+
+    <h3>* 경로 생성</h3> 
+    <p><a href="https://google.com">구글로 이동</a></p>
+    <p><a th:href="${url}">구글로 이동</a></p> <!--th:쓰고 $넣고 아까 컨트롤러에서 만든 모델-->
+
+    <p><a href="../param/test1">Get test 가는 상대경로</a></p>
+    <!-- 골뱅이 넣고 우리프로젝트 가장 상위를 슬래시로 잡고 (현재위치 고려 안하고 걍 씀) -->
+    <!-- 컨트롤러 클래스에 @RequestMapping("/th") 없어도 가능 -->
+    <p><a th:href="@{/param/test1}">Get test 가는 상대경로</a></p>
+    
+
+    <p><img src="../images/sakura.jpg"></img></p>
+    <!-- 위치 신경안쓰고 복붙하면 어디서나 보인다(프로젝트 이름, ..이런거 고려안해도 됨) -->
+    <p><img th:src="@{/images/sakura.jpg}"></img></p>
+
+    
+    <h3>* 연산자</h3>
+    <!-- 산술연산자 +-*/% -->
+    <p th:text="${num + 1}"></p> 
+    <p th:text="${num % 20}"></p>
+
+    <!-- 비교연산자 > < <= >= == != lt gt le ge eq ne 결과값: true false-->
+    <p th:text="${num > 100}"></p> 
+
+    <!-- 논리연산자 and or not-->
+    <p th:text="${num ge 1 and num le 100}"></p>
+    <p th:text="${num >= 1 && num <= 100}"></p>
+    <p th:text="${num >= 1 || num >= 100}"></p>
+    <p th:text="${num > 1000 || num > 100}"></p> 
+
+    <!-- 문자열 연산자 --> 
+    <!-- 자바처럼 큰 따옴표 붙이면 에러남 작은따옴표 붙여준다  -->
+    <p th:text="${str + 'abc'}"></p>
+
+    <!-- 타임리프에서만 쓸수 있는 것, 바 사이에 문자 넣으면 됨 -->
+    <p th:text="|aaaa${str}bbbb|"></p>
+
+    <!-- 비교(자바처럼 가능) -->
+    <p th:text="${str.equals('abcd')}"></p>
+    <!-- abcd의 값이 str값과 같지않은지 물어보는것 -->
+    <p th:text="${not str.equals('abcd')}"></p>
+
+    <!-- 자바에선 안되지만 여기서는 됨 -->
+    <p th:text="${str =='abcd'}"></p>
+    <p th:text="${str !='abcd'}"></p>
+
+    <h3>* 객체 출력</h3>
+    <!-- 객체의 이름만 한번 써준다 -->
+    <div th:object="${person}">
+        <!-- 그리고 별 붙이면서 쓰면 됨 -->
+        <p th:text="*{id}"></p>
+        <p th:text="*{name}"></p>
+        <p th:text="*{phone}"></p>
+    </div>
+
+    <h3>* 포메팅</h3>
+    <p th:text="${inum}"></p>
+    <p th:text="${dnum}"></p>
+    <p th:text="${dnum2}"></p>
+    <p th:text="${date}"></p>
+    
+    <!-- 모양을 다듬어서 리턴을 해줌 -->
+    <!-- COMMA, WHITESPACE, NONE -->
+    얘를 몇자리에 맞게 출력해줘라는 뜻, 앞에 붙음
+    <p th:text="${#numbers.formatInteger(inum,10)}"></p>
+
+    3단위마다 쉼표 찍어줘라
+    <p th:text="${#numbers.formatInteger(inum,3,'COMMA')}"></p>
+
+    앞의세자리마다 쉼표, 소수점 아래 두자리로 출력해라(세번째자리에서 반올림)
+    <p th:text="${#numbers.formatDecimal(dnum,3,'COMMA',2,'POINT')}"></p>
+    <!-- 데이터가 더블이어도 포맷은 인티져 라고 해야하는듯? 가 아니고 
+        어차피 더블형은 소수자릿수가 있기때문에 위에 걸로 해야함 밑에는 의미없음 -->
+    <p th:text="${#numbers.formatInteger(dnum,10)}"></p>
+
+    백분율 자리수는 그대로 소수점아래 두자리
+    <p th:text="${#numbers.formatPercent(dnum2, 0, 2)}"></p>
+
+    대소문자 구분함 주의, 월은 대문자, 시간대문자는 12시간 24시간 기준
+    <p th:text="${#dates.format(date, 'yyyy/MM/dd HH.mm')}"></p>
+    <p th:text="${#dates.format(date, 'yyyy/MM/dd hh.mm')}"></p>
+
+
+
+</body>
+</html>

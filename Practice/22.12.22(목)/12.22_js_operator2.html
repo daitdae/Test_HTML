@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            let x = 5;
+            let y = 3;
+            
+            let z =  '5 > 3 : ' + (x > y) + '<br>';
+                z += '5 < 3 : ' + (x < y) + '<br>';
+                z += '5 >= 3 : ' + (x >= y) + '<br>';
+                z += '5 <= 3 : ' + (x <= y) + '<br>';
+                z += '5 == 3 : ' + (x == y) + '<br>';
+                z += '5 != 3 : ' + (x != y) + '<br>';
+
+            x = "3";
+            y = 3;
+
+            z += '"3" == 3 : ' +(x==y)+ '<br>';
+            z += '"3" != 3 : '+(x!=y)+ '<br><br>';
+
+            z += '"3" === 3 : ' +(x===y)+ '<br>';
+            z += '"3" !== 3 : ' +(x!==y)+ '<br><br>'; 
+
+            x="kim";
+            y="lee";
+
+            z += '"kim"==="lee" : ' +(x===y)+ '<br>';
+            z += '"kim"!=="lee" : ' +(x!==y)+ '<br>';
+
+
+            let calc = document.getElementById("result");
+            calc.innerHTML= z;
+        }
+    </script>
+</head>
+<body>
+    <h2 id="result"></h2>
+    
+</body>
+</html>

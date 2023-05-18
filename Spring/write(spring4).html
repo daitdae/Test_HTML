@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>spring4</title>
+    <style>
+        textarea {
+            width: 300px;
+            height: 100px;
+            border: 1px solid black;
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>[ 방명록 글쓰기 ]</h1>
+
+    <form action="write" method="post">
+    <table>
+        <tr>
+            <th>이름</th>
+            <td><input type="text" name="name" id="name" maxlength="10"></td>
+        </tr>
+        <tr>
+            <th>비밀번호</th>
+            <td><input type="password" name="password" id="password" maxlength="10"></td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td><textarea name="contents" id="contents" placeholder="내용을입력하세요" required></textarea></td>
+        </tr>
+    </table>
+        <input type="submit" value="저장">
+    </form>
+</body>
+</html>

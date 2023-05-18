@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!-- thymeleaf 사용(템플릿 엔진) 밑에 html태그에 추가-->
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"> 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>model.html</title>
+</head>
+<body>
+    <h2>[ Model 적용 ]</h2>
+    <p th:text="${number}">이 사이에 뭐라고 쓰던 무시되니깐 중간중간 필요한거 넣어두기</p>
+    <p>서버에서 가져온 문자열은 (<span th:text="${string}">테스트</span>) 입니다.</p> <!-- 문자열 사이에 넣고 싶으면 이런식으로 -->
+    <p th:text="${list}"></p>
+    <p th:text="${abc}"></p>
+    <p>[[${string}]]</p>        <!-- 그냥 대괄호 두개 때려박고 안에 넣으면 나오긴 하는데 하지마라 -->
+    <p>[[${person}]]</p>
+    <p th:text="${person.name}"></p>    <!-- person 객체의 name부분만 뽑아올때 -->
+    
+</body>
+</html>

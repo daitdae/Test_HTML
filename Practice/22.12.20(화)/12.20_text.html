@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>text관련 CSS</title>
+    <style>
+        p#container{
+            border: 1px solid#ccc;
+            width: 300px;
+            height: 150px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        p#container:hover{
+            overflow: visible;
+        }
+    </style>
+</head>
+<body>
+    <p id="container">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Quis eaque doloremque nobis inventore error ex,
+        natus aliquam obcaecati aliquid ratione magnam nesciunt
+        modi mollitia, dolore non sunt iure? Perferendis, 
+        consectetur.</p>
+    
+</body>
+</html>

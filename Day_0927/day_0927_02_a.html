@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>하이퍼링크를 작성</title>
+</head>
+<body>
+    <h2>하이퍼 링크를 작성하는 태그</h2>
+    <p> a태그 하이퍼링크를 작성하는 태그로 anchor의 약자
+        href라고 하는 필수 속성
+        밑줄이 표시, 방문한적 없으면 파란색, 방문한적 있으면 보라색, 누르는순간 잠시 붉은색
+    </p>
+
+    <ul>
+        <li>
+            <a href="./day_0927_01_img.html">이미지 문서</a>
+        </li>
+        <li>
+            <a href="http://www.naver.com">네이버</a>
+        </li>
+        <li>
+            * target: 링크의 내용이 표시될 위치(새창에서 열거냐, 현재창에서 열거냐)를 지정 <br>
+            _blank: 새창으로 오픈 <br>
+            _self: 현재창에다가 오픈(디폴트값) <!--<target="_self"> 현재페이지에 열리게 한다--> <br>
+            <a href="http://www.daum.net" target="_blank">다음</a>
+        </li>
+
+        <li>
+            <a href="#second">두번째 섹션으로 이동</a> 
+            <!--지정한 id값을 넣어준다 #과함께, 현재문서상에서 와리가리하란얘기
+            다른문서에서 갈때는 다른문서 ./day_0927_01_img.html#second 이런식으로 넣으면 가능-->
+        </li>
+
+        <li>
+            <a href="#third">세번째 섹션으로 이동</a>
+        </li>
+    </ul>
+
+    <hr>
+    <ul>
+        <li> <a href="https://www.q-net.or.kr/man001.do?gSite=Q" target="_blank">정보처리기사 자격증 정보</a></li>
+        
+        <li>
+            <a href="http://www.daum.net" target="_blank">
+                <img src="./images/daum_logo.png" alt="Daum 사이트로 이동"> 
+                <!--이미지클릭하면 넘어가게 하는 명령-->
+            </a>
+        </li>
+
+        <li>
+            <a href="https://comic.naver.com/webtoon/list?titleId=711422" target="_blank">
+                <img src="./images/samgookjitalk.jpg" alt="삼국지톡웹툰 이동">
+            </a>
+        
+            <a href="https://comic.naver.com/webtoon/list?titleId=616239" target="_blank">
+                <img src="./images/willyoumarryme.jpg" alt="윌유메리미웹툰 이동">
+            </a>
+
+            <a href="https://comic.naver.com/webtoon/list?titleId=790713" target="black">
+                <img src="./images/escape.jpg" alt="대학원탈출웹툰 이동">
+            </a>
+        </li>
+    </ul>
+
+    <hr>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <h3 id="second">두번째 섹션</h3>
+
+    <hr>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <h3 id="third">세번째 섹션</h3>
+    <!--id태그 글로벌 속성 아무거랑 다 쓸수있다.-->
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+</body>
+</html>

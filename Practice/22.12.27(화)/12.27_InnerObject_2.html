@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내장 객체 이용하기</title>
+    <script>
+        window.onload = function(){
+            inner();
+
+            let timer;
+
+            document.getElementById("start").onclick = function(){
+                timer = setInterval(inner,1);
+            }
+            document.getElementById("stop").onclick = function(){
+                clearInterval(timer);
+            }
+
+          
+        }
+            
+        function inner(){
+            let target = document.getElementById("sample");
+
+            let today = new Date();
+
+            let year = today.getFullYear();
+            let month = today.getMonth()+1;
+            let day = today.getDay();
+            let hour = today.getHours();
+            let minute = today.getMinutes();
+            let second = today.getSeconds();
+            let milli = today.getMilliseconds();
+
+            let data = `${year}년 ${month}월 ${day}일 ${hour}:${minute}:${second}:${milli}<br>`;
+            target.innerHTML = data;
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <input type="button" value="start" id="start"> &nbsp;
+        <input type="button" value="stop" id="stop"> &nbsp;
+    </div>
+    <h1 id="sample"></h1>
+    
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>탭 메뉴</title>
+	<style>
+		/* 기본적인 스타일링 */
+		.tab {
+			overflow: hidden;
+			border: 1px solid #ccc;
+			background-color: #f1f1f1;
+			margin-top: 20px;
+		}
+		
+		/* 탭 버튼 스타일링 */
+		.tab button {
+			background-color: inherit;
+			float: left;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			padding: 14px 16px;
+			transition: 0.3s;
+			font-size: 17px;
+		}
+		
+		/* 선택된 탭 버튼 스타일링 */
+		.tab button.active {
+			background-color: #ccc;
+		}
+		
+		/* 탭 컨텐츠 스타일링 */
+		.tabcontent {
+			display: none;
+			padding: 6px 12px;
+			border: 1px solid #ccc;
+			border-top: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="tab">
+		<button id="tab1-btn" onclick="openTab('tab1')">탭1</button>
+		<button id="tab2-btn" onclick="openTab('tab2')">탭2</button>
+		<button id="tab3-btn" onclick="openTab('tab3')">탭3</button>
+	</div>
+
+	<div id="tab1" class="tabcontent">
+		<h3>탭1 컨텐츠</h3>
+		<p>탭1에 대한 내용입니다.</p>
+	</div>
+
+	<div id="tab2" class="tabcontent">
+		<h3>탭2 컨텐츠</h3>
+		<p>탭2에 대한 내용입니다.</p>
+	</div>
+
+	<div id="tab3" class="tabcontent">
+		<h3>탭3 컨텐츠</h3>
+		<p>탭3에 대한 내용입니다.</p>
+	</div>
+
+	<script>
+		function openTab(tabName) {
+			// 모든 탭 컨텐츠를 display: none으로 설정
+			var i, tabcontent, tablinks;
+			tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+
+			// 모든 탭 버튼의 클래스를 제거
+			tablinks = document.getElementsByTagName("button");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(" active", "");
+			}
+
+			// 선택된 탭 버튼에 active 클래스 추가 및 해당 탭의 컨텐츠 display: block으로 설정
+			document.getElementById(tabName).style.display = "block";
+			document.getElementById(tabName + "-btn").className += " active";
+		}
+	</script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>탭 메뉴</title>
+	<style>
+		/* 기본적인 스타일링 */
+		.tab {
+			overflow: hidden;
+			border: 1px solid #ccc;
+			background-color: #f1f1f1;
+			margin-top: 20px;
+		}
+		
+		/* 탭 버튼 스타일링 */
+		.tab button {
+			background-color: inherit;
+			float: left;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			padding: 14px 16px;
+			transition: 0.3s;
+			font-size: 17px;
+		}
+		
+		/* 선택된 탭 버튼 스타일링 */
+		.tab button.active {
+			background-color: #ccc;
+		}
+		
+		/* 탭 컨텐츠 스타일링 */
+		.tabcontent {
+			display: none;
+			padding: 6px 12px;
+			border: 1px solid #ccc;
+			border-top: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="tab">
+		<button class="tablinks" onclick="openTab(event, 'tab1')">탭1</button>
+		<button class="tablinks" onclick="openTab(event, 'tab2')">탭2</button>
+		<button class="tablinks" onclick="openTab(event, 'tab3')">탭3</button>
+	</div>
+
+	<div id="tab1" class="tabcontent">
+		<h3>탭1 컨텐츠</h3>
+		<p>탭1에 대한 내용입니다.</p>
+	</div>
+
+	<div id="tab2" class="tabcontent">
+		<h3>탭2 컨텐츠</h3>
+		<p>탭2에 대한 내용입니다.</p>
+	</div>
+
+	<div id="tab3" class="tabcontent">
+		<h3>탭3 컨텐츠</h3>
+		<p>탭3에 대한 내용입니다.</p>
+	</div>
+
+	<script>
+		function openTab(evt, tabName) {
+			// 모든 탭 컨텐츠를 display: none으로 설정
+			var i, tabcontent, tablinks;
+			tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+
+			// 모든 탭 버튼의 클래스를 제거
+			tablinks = document.getElementsByClassName("tablinks");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(" active", "");
+			}
+
+			// 선택된 탭 버튼에 active 클래스 추가 및 해당 탭의 컨텐츠 display: block으로 설정
+			document.getElementById(tabName).style.display = "block";
+			evt.currentTarget.className += " active";
+		}
+	</script>
+</body>
+</html>
+
+
+
+function comma(str) {
+	str = String(str);
+	return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
+
+<div class="form-group">
+	<p th:text="#{price}">금액</p>
+	<input type="text" class="showused_price form-control"
+		th:value="${#numbers.formatInteger(used.used_price, 3, 'COMMA') + '원'}" readonly>
+	<input type="text" class="used_price" name="uDetail_price" th:value="${used.used_price}"
+		hidden>
+</div>
+
+
+<div class="usedhref">
+	<a th:href="@{/used/usedSellBoardDelete(used_id=${used_sell.used_id})}">
+	<button class="btn btn-secondary btn-block" value="삭제" th:text="#{delete}">삭제</button></a>
+</div>
+
+<div class="usedhref">
+<button class="btn btn-secondary btn-block" onclick="sample6_execDaumPostcode()"
+                                th:value="#{searchPostCode}" value="우편번호 찾기"></button>
+</div>
+
+<input type="submit" th:value="#{pay}" value="결제하기">
+
+<div class="usedhref">
+	<button type="submit" btn btn-secondary btn-block value="삭제" th:text="#{pay}">결제하기</button>
+</div>

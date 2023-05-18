@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>ANABADA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" th:href="@{/assets/img/apple-icon.png}">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/img/favicon.ico}">
+
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/templatemo.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/custom.css}">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" th:href="@{/assets/css/fontawesome.min.css}">
+
+    <!--           -->
+    <meta name="author" content="Untree.co">
+    <link rel="shortcut icon" th:href="@{/assets/img/favicon.png}">
+
+    <meta name="description" content="" />
+    <meta name="keywords" content="bootstrap, bootstrap5" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" th:href="@{/assets/property_fonts/icomoon/style.css}">
+    <link rel="stylesheet" th:href="@{/assets/property_fonts/flaticon/font/flaticon.css}">
+
+	<link rel="stylesheet" th:href="@{/assets/property_css/tiny-slider.css}">
+	<link rel="stylesheet" th:href="@{/assets/property_css/aos.css}">
+	<link rel="stylesheet" th:href="@{/assets/property_css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- 개인 css-->
+    <link rel="stylesheet" th:href="@{/css/css_purchase.css}">
+    
+    <style>
+    
+      .info input[type=text], .showmuch, .showrental_price, .showmoney {
+      background: transparent;
+       pointer-events: none;
+      }
+      
+      .addr1{
+             pointer-events: none;
+      
+      }
+      
+      .hidden {
+      display:none;
+      color: red;
+      
+      }
+    </style>
+     
+    <!-- 제이쿼리 (pyw) -->
+    <script th:src="@{/js/js_myPage.js}"></script>
+    <script th:src="@{/js/lanTest.js}"></script>
+
+	<script th:src="@{/jQuery/jquery-3.6.3.min.js}"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	
+	<script>
+	$(document).ready(function(){
+		pricecal();
+		$('.rental_sdate').change(pricecal);
+		$('.rental_edate').change(pricecal);
+		$('.myaddr').change(myaddr);
+		$('.newaddr').change(newaddr);
+		$('.post').click(sample6_execDaumPostcode);
+		$('#purchaseform').submit(submitcheck);
+
+	});	
+	
+	/**
+		기간 변경 시 렌탈 금액 자동 변경
+	*/	
+	function pricecal() {
+		let edate = new Date($('.rental_edate').val()).getTime()
+		let sdate = new Date($('.rental_sdate').val()).getTime()
+		let count = edate - sdate;
+			
+		let countday = count / (1000 * 60 * 60 * 24);
+		let total = $('.rental_price_day').val() * countday;
+		if($.isNumeric(total) && total > 0){
+			$('.showrental_price').val(comma(total)+' ₩');
+			$('.rental_price').val(total);
+			$('.showmoney').val($('.showrental_price').val());	
+			$('.money').val($('.rental_price').val());	
+
+	}
+		else{
+			$('.showrental_price').val(0);
+			$('.rental_price').val(0);
+			$('.showmoney').val($('.showrental_price').val()+' ₩');	
+			$('.money').val($('.rental_price').val());	
+		}
+		
+		if($('.rental_price').val() <= 0){
+			$('.rental_sdate ~ div').css("display" ,"block");
+		}else{
+			$('.rental_sdate ~ div').css("display" ,"none");
+		}
+	}
+	
+	/**
+		숫자 천자리 마다 , 넣기
+	*/	
+    function comma(str) {
+        str = String(str);
+        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+    }
+    
+	/**
+		내 주소 선택시 해당 내용 db에서 불러와서 넣기
+	*/	
+	function myaddr(){
+		$.ajax({
+			url: 'myaddr'
+			, type: 'get'
+			, dataType: 'json'
+			, success: function(userone){
+				$('.name').val(userone.user_name);
+				$('.phone').val(userone.user_phone);
+				$('.post').val(userone.user_post);	
+				$('.addr1').val(userone.user_addr1);	
+				$('.addr2').val(userone.user_addr2);		
+
+			}
+			, error: function(){
+				alert("실패");
+			}
+			
+		});
+	}
+	
+	/**
+		신규 배송지 선택시 해당 내용 자리 비우기
+	*/	
+	function newaddr(){
+		$('.name').val("");
+		$('.phone').val("");
+		$('.post').val("");
+		$('.addr1').val("");
+		$('.addr2').val("");
+	}
+	
+	
+	/**
+		submit 클릭 시 데이터 무결성 확인
+	*/	  		
+	function submitcheck(){
+		let check = /[0-9]{11,11}$/; 
+		
+		if($('.rental_sdate').val() == "" || $('.rental_edate').val() == "" || $('.rental_price').val() <= 0){
+			$('.rental_sdate ~ div').css("display" ,"block");
+			return false;
+		} else if($('.rental_sdate').val() < getToday()){
+			$('.rental_sdate ~ div').css("display" ,"block");
+			return false;			
+		} else if ($('.rental_sdate').val() >= $('.rental_edate').val()){
+			$('.rental_sdate ~ div').css("display" ,"block");
+			return false;			
+		} else if ($('.fixedrental_sDate').val() > $('.rental_sdate').val()){
+			$('.rental_sdate ~ div').css("display" ,"block");
+			return false;			
+		} else if ($('.rental_edate').val() > $('.fixedrental_eDate').val()){
+			$('.rental_sdate ~ div').css("display" ,"block");
+			return false;			
+		} else{
+			$('.rental_sdate ~ div').css("display" ,"none");
+		}
+		
+		if($('.name').val().trim() == ""){
+			$('.name ~ div').css("display" ,"block");
+			return false;
+		}else{
+			$('.name ~ div').css("display" ,"none");
+		}
+		
+		if($('.phone').val() == "" || !check.test($('.phone').val())){
+			$('.phone ~ div').css("display" ,"block");
+			return false;
+		}else{
+			$('.phone ~ div').css("display" ,"none");
+		}
+		
+		if($('.post').val() == ""){
+			$('.post ~ div').css("display" ,"block");
+			return false;
+		}else{
+			$('.post ~ div').css("display" ,"none");
+		}
+		
+		if(Number($('.money').val()) > Number($('.much').val())){
+			$('.money ~ div').css("display" ,"block");
+			return false;
+		}else{
+			$('.money ~ div').css("display" ,"none");
+		}
+		
+		
+		if(!$('.agree').is(":checked")){
+			$('.agree ~ div').css("display" ,"block");
+			return false;
+		}else{
+			$('.agree ~ div').css("display" ,"none");
+		}
+		
+	}
+	
+	function getToday(){
+	    var date = new Date();
+	    var year = date.getFullYear();
+	    var month = ("0" + (1 + date.getMonth())).slice(-2);
+	    var day = ("0" + date.getDate()).slice(-2);
+
+	    return year + "-" + month + "-" + day;
+	}
+	
+	<!-- 다음 우편번호 검색 -->
+	
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if(data.userSelectedType === 'R'){
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드에 넣는다.
+                
+                } 
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById("sample6_address").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("sample6_detailAddress").focus();
+            }
+        }).open();
+    }
+</script>
+</head>
+
+<body>
+     <!-- Header -->
+     <nav class="navbar navbar-expand-lg navbar-light shadow">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <a class="navbar-brand text-success logo h1 align-self-center" th:href="@{/}" id="title_logo">
+                ANABADA
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
+                id="templatemo_main_nav">
+                <div class="flex-fill">
+                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" th:href="@{/used/usedSellBoard}" id="usedDropdown" role="button"
+                                aria-haspopup="true" aria-expanded="false">USED</a>
+                            <div class="dropdown-menu" aria-labelledby="usedDropdown">
+                                <a class="dropdown-item" th:href="@{/used/usedSellBoard}">중고판매</a>
+                                <a class="dropdown-item" th:href="@{/used/usedBuyBoard}">중고구매</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{rentalBoard}">RENTAL</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/auction/auctionBoard}">AUCTION</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">MAP</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">INTRODUCTION</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar align-self-center d-flex">
+                    <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
+                            <div class="input-group-text">
+                                <i class="fa fa-fw fa-search"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
+                        <i class="fa fa-fw fa-search text-dark mr-2"></i>
+                    </a> -->
+                    <!-- <a class="nav-icon position-relative text-decoration-none" href="#">
+                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
+                    </a> -->
+
+                    <a class="nav-icon position-relative text-decoration-none" id="dropdownMenuLink"
+                        aria-expanded="false">
+                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                        <span
+                            class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
+                    </a>
+                    <div id="dropdownMenu" class="dropdown-menu" style="display:none;">
+                        <!-- 이 부분은 나중에 시큐리티 처리 해야할듯 -->
+                        <a class="dropdown-item" th:href="@{/login}">로그인</a>
+                        <a class="dropdown-item" th:href="@{/mypage/mypage}">마이페이지</a>
+                        <a class="dropdown-item" th:href="@{/logout}">로그아웃</a>
+                    </div>
+
+                    <a class="nav-icon position-relative text-decoration-none" href="#" id="dropdownMenuButton-lang">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-globe" viewBox="0 0 16 16">
+                            <path
+                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z" />
+                        </svg>
+                    </a>
+
+                    <!-- 언어 선택 버튼 이미지 -->
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-lang">
+                        <a class="dropdown-item" th:text="#{lang.ko}" id="langKO" th:href="|javascript:springLanguage('ko')|">한국어</a>
+                        <a class="dropdown-item" th:text="#{lang.jp}" id="langJP" th:href="|javascript:springLanguage('ja-JP')|">日本語</a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </nav>
+    <!-- Close Header -->
+
+    <!-- Modal -->
+    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="w-100 pt-1 mb-5 text-right">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="get" class="modal-content modal-body border-0 p-0">
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
+                    <button type="submit" class="input-group-text bg-success text-light">
+                        <i class="fa fa-fw fa-search text-white"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 넣을부분 -->
+
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close">
+                    <span class="icofont-close js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+    
+    
+        <div class="section">
+            <div class="container">
+
+                <div class="row justify-content-between">
+
+                    <div class="col-lg-7">
+                        <div class="img-property-slide-wrap">
+                            <div class="img-property-slide">
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                            <input type="hidden" name="rental_id" id="rental_id" th:value="${rental.rental_id}">
+                            <div class="heading text-primary">
+                                <h2 th:text="${rental.rental_title}" id="papago0" class="papago" papagoCount="0">제목</h2>
+                            </div>
+                            <div class="meta">
+                                <h3 th:text="'가격: '+${#numbers.formatInteger(rental.rental_price, 3, 'COMMA')} + ' ₩'" id="papago1" class="papago" papagoCount="1">가격</h3>
+                            </div><br>
+                            <div class="text-black-50">
+                                <p th:text="${rental.rental_content}" id="papago2" class="papago" papagoCount="2">내용</p>
+                            </div>
+                            <div class="text-black-30">
+                                <p th:text="${'상품상태: '+ rental.rental_quality}" id="papago3" class="papago" papagoCount="3">퀄리티</p>
+                            </div>
+                            <div class="text-black-30">
+                                <p th:text="${'렌탈시작날: '+ rental.rental_sDate}" id="papago3" class="papago" papagoCount="3">퀄리티</p>
+                            </div>
+                            <div class="text-black-30">
+                                <p th:text="${'렌탈마지막날: '+ rental.rental_eDate}" id="papago3" class="papago" papagoCount="3">퀄리티</p>
+                            </div>
+                            <p class="text-black-30"><span id="papago4" class="papago" papagoCount="4">* 대여기간 내 손상시 수리비 청구</span></p>
+                            <p class="text-black-30"><span id="papago4" class="papago" papagoCount="4">* 배송시 배송료 별도</span></p>
+                      
+                        <div class="d-block agent-box p-5">
+                            <div class="img mb-4"> 
+                                <!-- <img th:src="@{/assets/property_images/person_2-min.jpg}" alt="Image" class="img-fluid"> -->
+                                다마고치 넣는 곳
+                            </div>
+                            <div class="text">
+                            <h5 th:text="'닉네임: '+${user.user_nick}">닉네임</h5>
+                            <h5 th:text="'레벨: '+${user.user_level}">레벨</h5>
+                            <h5>
+                                <span th:text="'거래 갯수: '+${user.user_trade}+' /' "></span>
+                                <span th:text="'페널티: '+${user.user_penalty}"></span>
+                            </h5>
+
+                            <div style="text-align: right;"> 
+                                <button type="button" class="btn btn-primary btn-lg">채 팅</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+
+          <form th:action="@{/rental/purchase}" method="post" id="purchaseform">
+        
+            <div class="info form-group">
+            
+            	<h3 class="my-4">대여 정보</h3>
+            	<input type="text" name="rental_id" th:value="${rental.rental_id}" hidden>
+            	<div class="form-group">
+            		<p>상품명</p>
+            	    <input type="text" class="form-control" th:value="${rental.rental_title}"  readonly>
+            	</div>
+            	<div class="form-group">
+            		<p>대여기간</p>
+	            	<input type="date" class="fixedrental_sDate" th:value="${rental.rental_sDate}" hidden>
+	            	<input type="date" class="fixedrental_eDate" th:value="${rental.rental_eDate}" hidden>            		
+	            	<input type="date" class="rental_sdate form-control" name="rDetail_sDate" th:value="${rental.rental_sDate}">
+	            		- <input type="date" class="rental_edate form-control" name="rDetail_eDate" th:value="${rental.rental_eDate}">
+	            		<div class="hidden">
+              				대여기간을 다시 설정해 주세요.
+            			</div>
+	            </div>
+				<div class="form-group">
+	            	<p>대여금액</p>
+	            	<input type="text" class="showrental_price form-control"  readonly>
+	            	<input type="text" class="rental_price" name="rDetail_price"  hidden>
+                <input type="text" class="rental_price_day form-control" th:value="${rental.rental_price}" hidden>
+          	</div>
+          	
+            </div>
+            <br>
+            <div class="form-group">
+                <h3 class="my-4">배송지 정보</h3>
+				<div class="form-group">
+                
+	            	<p>배송지 선택</p>
+	            	
+                	<input type="radio" class="newaddr form-check-label" name="addr" value="new" checked>신규배송지
+	                <input type="radio" class="myaddr form-check-label" name="addr" value="default">내 주소
+				</div>
+				<div class="form-group">
+				
+	                <p>수령인</p>
+	                <input type="text" class="name form-control" name="rDetail_person" placeholder="20자 이내로 입력하세요."><br>
+	            		<div class="hidden">
+              				수령인을 입력해 주세요.
+            			</div>
+            	</div>
+            	
+				<div class="form-group">
+	                <p>연락처</p>
+	                <input type="text" class="phone form-control" name="rDetail_phone" placeholder="-없이 입력해주세요."><br>
+	            		<div class="hidden">
+              				정확한 핸드폰 번호를 입력해주세요.
+            			</div>
+					</div>  
+				<div class="form-group">
+					        			
+	                <p>배송지 주소</p>
+	                <input type="text" id="sample6_postcode" name="rDetail_post" class="post form-control" placeholder="우편번호"> 
+                    
+                    <div class="usedhref">
+                        <button class="btn btn-secondary btn-block" onclick="sample6_execDaumPostcode()"
+                        th:value="#{searchPostCode}" value="우편번호 찾기">우편번호 찾기</button>
+                    </div>
+                    
+	            	<input id="sample6_address" class="addr1 form-control" name="rDetail_addr1" type="text" readonly><br>
+	            	<input id="sample6_detailAddress" class="addr2 form-control" name="rDetail_addr2" type="text"><br>
+	            		<div class="hidden">
+              				주소를 입력해 주세요.
+            			</div>
+            			</div>
+				<div class="form-group">	
+	            	<p>배송메모</p>
+	            	<textarea name="rDetail_memo" class="form-control" placeholder="요청사항을 직접 입력합니다"></textarea>
+	            	</div>	
+                </div> 
+                <div><p></p></div>
+            </div>
+        
+            <br>
+            
+            <div class="col-md-4">
+                <h3 class="my-4">아나바다 포인트 </h3>
+                <div class="form-group">
+	                <p>보유</p> 
+	                <input type="text" class="showmuch form-control" th:value="${#numbers.formatInteger(user.user_account, 3, 'COMMA')}" readonly>
+                    <div class="usedhref">
+                        <button class="btn btn-secondary btn-block charge" th:value="#{charge}" value="충전">충전</button>
+                    </div>
+	                <input type="text" class="much" th:value="${(user.user_account)}" hidden>
+	            </div>
+                <br>
+                <br>
+	            <div class="form-group">
+	                <p>사용</p> 
+	                <input type="text" class="showmoney form-control">
+	                <input type="text" class="money" name="user_account" hidden> <br>
+                	<div class="hidden">
+						보유 포인트가 부족합니다.
+            		</div>
+            	</div>
+            	<div class="form-group">
+                	<input type="checkbox" class="agree">
+                	<span>주문내용에 동의 하였으며 정보 제공 등에 동의합니다. </span><br>
+		 	            <div class="hidden">
+		              		동의란에 체크해 주세요.
+		            	</div>               	
+		         </div>
+            
+            <div>
+                <div class="usedhref">
+                    <button type="submit" class="btn btn-secondary btn-block" value="삭제" th:text="#{pay}">결제하기</button>
+                </div>
+            </div><br>
+            </div>
+			</form>
+        </div>
+    </div>
+       
+    </body>
+    <!-- Start Footer -->
+    <footer class="bg-dark" id="tempaltemo_footer">
+        <div class="container">
+            <div class="row">
+    
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">ANABADA</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li>
+                            <i class="fas fa-map-marker-alt fa-fw"></i>
+                            06164 서울특별시 강남구 영동대로 513<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(삼성동, 코엑스) 4층 ICT센터
+                        </li>
+                        <li>
+                            <i class="fa fa-phone fa-fw"></i>
+                            <a class="text-decoration-none" href="tel:010-1111-2222">010-1111-2222</a>
+                        </li>
+                        <li>
+                            <i class="fa fa-envelope fa-fw"></i>
+                            <a class="text-decoration-none" href="mailto:anabada@anabada.com">anabada@anabada.com</a>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">Menu</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li><a class="text-decoration-none" th:href="@{usedSellBoard}">중고거래</a></li>
+                        <li><a class="text-decoration-none" th:href="@{/rental/rentalBoard}">렌 탈</a></li>
+                        <li><a class="text-decoration-none" th:href="@{/auction/auctionBoard}">경 매</a></li>
+                        <li><a class="text-decoration-none" href="#">지 도</a></li>
+                        <li><a class="text-decoration-none" href="#">프로젝트 소개</a></li>
+                    </ul>
+                </div>
+    
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">Informations</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li><a class="text-decoration-none" th:href="@{/indexMain}">Home</a></li>
+                        <li><a class="text-decoration-none" href="#">About Us</a></li>
+                        <li><a class="text-decoration-none" href="#">Shop Locations</a></li>
+                        <li><a class="text-decoration-none" href="#">FAQs</a></li>
+                        <li><a class="text-decoration-none" href="#">Contact</a></li>
+                    </ul>
+                </div>
+    
+            </div>
+    
+            <div class="row text-light mb-4">
+                <div class="col-12 mb-3">
+                    <div class="w-100 my-3 border-top border-light"></div>
+                </div>
+                <div class="col-auto me-auto">
+                    <ul class="list-inline text-left footer-icons">
+                        <!-- <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i class="fab fa-twitter fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
+                        </li> -->
+                    </ul>
+                </div>
+                <div class="col-auto">
+                    <label class="sr-only" for="subscribeEmail">Email address</label>
+                    <!-- <div class="input-group mb-2">
+                        <input type="text" class="form-control bg-dark border-light" id="subscribeEmail" placeholder="Email address">
+                        <div class="input-group-text btn-success text-light">Subscribe</div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    
+        <div class="w-100 bg-black py-3">
+            <div class="container">
+                <div class="row pt-2">
+                    <div class="col-12">
+                        <p class="text-left text-light">
+                            <!-- Copyright &copy; 2021 Company Name 
+                            | Designed by <a rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a> -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+    </footer>
+    <!-- End Footer -->
+
+     <!-- Start Script -->
+     <script src="assets/js/jquery-1.11.0.min.js"></script>
+     <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+     <script src="assets/js/bootstrap.bundle.min.js"></script>
+     <script src="assets/js/templatemo.js"></script>
+     <script src="assets/js/custom.js"></script>
+     <script th:src="@{/assets/js/jquery-1.11.0.min.js}"></script>
+     <script th:src="@{/assets/js/jquery-migrate-1.2.1.min.js}"></script>
+     <script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script> 
+     <script th:src="@{/assets/property_js/tiny-slider.js}"></script>
+     <script th:src="@{/assets/property_js/aos.js}"></script>
+     <script th:src="@{/assets/property_js/navbar.js}"></script>
+     <script th:src="@{/assets/property_js/counter.js}"></script>  
+     <script th:src="@{/assets/js/templatemo.js}"></script>
+     <script th:src="@{/assets/property_js/custom.js}"></script> 
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <script th:src="@{/js/js_usedSellBoard(JPB).js}"></script>
+     <script th:src="@{/js/pjh.js}"></script>
+     
+     <!-- 제이쿼리 (pyw)-->
+     <script th:src="@{/js/jquery-3.6.3.min.js}"></script>
+     <script th:src="@{/js/js_myPage.js}"></script>
+     <script th:src="@{/js/lanTest.js}"></script>
+     
+     <!-- End Script -->
+
+
+</html>

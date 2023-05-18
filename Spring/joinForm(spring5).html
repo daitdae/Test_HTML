@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>joinForm</title>
+    <!-- <link rel="stylesheet" href="./joinForm.css"> -->
+    <script>
+        function idcheck(){
+            window.open('idcheck','win','top=100,left=500,width=400,height=400');
+                        //'경로','창의 이름','창의 모양'(위치(위),위치(아래),크기(가로),크기(세로))
+        }
+    </script>
+</head>
+<body>
+    <h1>[ 회원 가입 ]</h1>
+
+    <form id="joinform" th:action="@{/member/join}" method="post">
+        <!-- onsubmit="return validation" 이거 들어가 있던데 왜있지? -->
+        <table>
+            <tr>
+                <th>ID</th>
+                <td><input type="text" name="memberid" id="memberid" readonly="readonly"></td>
+                <td><input type="button" value="중복확인" onclick="idcheck()"></td>
+            </tr>
+            <tr>
+                <th>비밀번호</th>
+                <td><input type="password" name="memberpw" id="memberpw" ></td>
+            </tr>
+            <tr>
+                <th>이름</th>
+                <td><input type="text" name="membername" id="membername" ></td>
+            </tr>
+            <tr>
+                <th>이메일</th>
+                <td><input type="text" name="email" id="email"></td>
+            </tr>
+            <tr>
+                <th>전화번호</th>
+                <td><input type="text" name="phone" id="phone"></td>
+            </tr>
+            <tr>
+                <th>주소</th>
+                <td><input type="text" name="address" id="address"></td>
+            </tr>
+        </table>
+            <input type="submit" value="저장">
+            <input type="reset" value="다시쓰기">
+        </form>
+    
+    
+</body>
+</html>

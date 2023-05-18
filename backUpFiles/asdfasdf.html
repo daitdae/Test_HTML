@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+         function nowprice() {
+            $.ajax({
+              url: 'nowprice',
+              type: 'get',
+              data: { 'auction_id': $('.auction_id').val() },
+              success: function (price) {
+                // H3 태그에 현재 가격을 출력합니다.
+                $('.nowprice').html('₩ '+ comma(price));
+                
+                // INPUT 태그에 현재 가격을 출력합니다.
+                $('.nowprice-input').val('₩ '+ comma(price));
+                // Span 태그에 현재 가격을 출력합니다.
+                $('.nowprice-span').html('₩ ' + comma(price));
+                // 현재 가격을 저장합니다.
+                $('.renowprice').val(price);
+              },
+            //   error: function () {
+            //     alert("입찰금액?");
+            //   }
+            });
+          }
+
+    </script>
+</head>
+<body>
+
+    
+    
+</body>
+</html>

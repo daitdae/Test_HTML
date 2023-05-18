@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PositionPractice</title>
+
+    <style>
+        div.parent{
+            border: 1px solid black;
+            padding:10px;
+            position: relative;
+        }
+        div.sibling{
+            background-color: blueviolet;
+            padding: 5px;
+            text-align: center;
+        }
+        div.second{
+            width: 100px;
+            height: 100px;
+            background-color: tomato;
+        }
+        div.static{
+            position: static;
+            top: 10px;
+            left: 10px;
+        }
+        div.relative{
+            position: relative;
+            top: 10px;
+            left: 10px;
+        }
+        div.absolute{
+            position: absolute;
+            top: 30px;
+            left: 30px;
+        }
+        div.fixed{
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Position 연습</h1>
+    <h2>Static(default)</h2>
+    <div class="parent" id="parent">
+        <div class="sibling">First</div>
+        <div class="second static">Second</div>
+        <div class="sibling">Third</div>
+    </div>
+
+    <h2>Relative</h2>
+    <div class="parent">
+        <div class="sibling">First</div>
+        <div class="second relative">Second</div>
+        <div class="sibling">Third</div>
+    </div>
+
+    <h2>Absolute</h2>
+    <div class="parent">
+        <div class="sibling">First</div>
+        <div class="second absolute">Second</div>
+        <div class="sibling">Third</div>
+    </div>
+
+    <h2>Fixed</h2>
+    <div class="parent">
+        <div class="sibling">First</div>
+        <div class="second fixed"><a href="#parent">Second</a></div>
+        <div class="sibling">Third</div>
+    </div>
+    
+</body>
+</html>

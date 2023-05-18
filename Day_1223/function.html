@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>   
+    
+        function test() { 
+            document.getElementById("header").innerHTML = "값을 바꿉니다.";
+            document.getElementById("usrname").value = "손오공";
+            let img = "https://dimg.donga.com/wps/NEWS/IMAGE/2022/01/28/111500268.2.jpg";
+            document.getElementById("cat").setAttribute("src",img);
+            }
+
+    </script>
+</head>
+<body>
+    <h2 id="header">이것은 h2</h2>
+    <input id="usrname" type="text" placeholder="이름을 입력"><br>
+    <img id="cat" src="http://www.chemicalnews.co.kr/news/photo/202106/3636_10174_4958.jpg"><br>
+    <br>
+    <input id="btn" type="button" onclick="test();" value="Click">  
+        <!--함수는 위에두고 호출은 밑에둬서 호출, 넣는 순서는 상관없이 되는 듯-->
+    
+    
+</body>
+</html>

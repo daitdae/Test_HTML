@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열의 메소드</title>
+    <script>
+        let arr_1 = ["사당","교대","방배","강남"];
+        let arr_2 = ["신사","압구정","옥수"];
+
+        let result = arr_1.join("-");   //배열에 저장된 값을 지정한 문자로 연결해 하나의 문자열 반환
+        console.log(result);            //사당-교대-방배-강남 이렇게 나옴
+
+        result = arr_1.concat(arr_2);   //2개의 배열을 하나로 합침
+        console.log(result);
+
+        result = arr_1.slice(1,3); //1~3 사이값을 가져온다 생각하는데 3은 포함 안됨 1,2만
+        console.log(result);
+
+        arr_1.sort();
+        console.log(arr_1); //배열의 이름 오름차순 101,102 페이지 마자 다 하기
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

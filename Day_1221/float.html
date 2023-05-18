@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>float</title>
+    <style>
+        /*li 태그의 폭 높이 스타일을 없애시오*/
+        *{              /*옆에 빈거 없애는 코드*/
+            padding: 0;
+            margin: 0;
+        }
+        ul{     /*li 전체폭+border=200px*5(개)+(2*5)*/
+            width: 1010px;
+            height: 102px;
+            margin: 0 auto;/*시계방향으로 돌아감 두개만쓰면 위아래 하나만 주면 전부 다*/
+        }
+        li{       
+            /*display: inline; 이거보다 float가 나음*/
+            width: 200px;
+            height: 100px;
+            list-style-type: none;
+            background: violet;
+            border: 1px solid black;
+            float: left;       
+        }
+        li:hover{
+            background: greenyellow;
+        }
+        div{
+            width: 200px;
+            height: 100px;
+            list-style-type: none;
+            background: coral;
+            clear: left; /*float의 영향을 받지 않게하는 코드 left나 both(위의 float보고 결정하면 될듯)*/
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>회사소개</li>
+        <li>도서</li>
+        <li>자료실</li>
+        <li>질문답변</li>
+        <li>동영상강의</li>
+    </ul>
+
+    <div>첫번째</div>
+    <div>두번째</div>
+    <div>세번째</div>
+    
+</body>
+</html>

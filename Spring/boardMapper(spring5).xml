@@ -1,0 +1,149 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.softsociety.spring5.dao.BoardDAO">
+	
+	<!-- 글 저장 -->
+	<insert id="write" parameterType="Board">
+	<!-- 전달된 파일명이 있을때만 originalfile, savedfile 값을 컬럼에 저장 -->
+	<!-- 동적쿼리 넣는법 확인해놓기 -->
+		INSERT INTO 
+			spring5_board 
+			(
+				boardnum
+				 ,memberid
+				 ,title
+				 ,contents
+			<if test="originfile != null and savedfile !=null">
+				 ,originfile
+				 ,savedfile
+			</if>
+			)
+		VALUES 
+			(
+				spring5_board_seq.nextval
+				, #{memberid}
+				, #{title}
+				, #{contents}
+			<if test="originfile != null and savedfile !=null">
+				, #{originfile}
+			 	, #{savedfile}
+			</if>
+			)
+	</insert>
+	
+	<!-- 글 다 가져오기 -->
+	<select id="list" resultType="Board" parameterType="map">
+		SELECT
+			boardnum
+			, memberid
+			, title
+			, hits
+			, to_char(inputdate,'yy/mm/dd')inputdate
+		FROM
+			spring5_board
+			
+			<!-- 검색어가 null이 아니면 where조건을 추가한다 -->
+			<!-- 검색대상이 title이면 제목에서 검색한다 -->
+			<!-- 검색대상이 contents이면 본문에서 검색한다 -->
+			<!-- 검색대상이 memberid이면 작성자를 검색한다 -->
+			<!-- 검색대상이 all이면 제목 본문 작성자를 모두검색한다 -->
+		
+			<if test="searchWord != null and type != null" >
+				<where>
+					<if test="type =='title'">
+						upper(title) like '%' || upper(#{searchWord}) || '%'
+					</if>
+					
+					<if test = "type =='contents'">
+						upper(contents) like '%' || upper(#{searchWord}) || '%'
+					</if>
+					
+					<if test = "type == 'memberid'">
+						memberid = #{searchWord}
+					</if>
+					
+					<if test ="type == 'all'">
+						upper(title) like '%' || #{searchWord} || '%'
+						or upper(contents) like '%' || #{searchWord} || '%'
+						or memberid = #{searchWord}
+					</if>
+				</where>
+			</if>
+			
+		ORDER BY
+			boardnum DESC
+	</select>
+	
+	<!-- 전체 글 개수 (count함수 기억해놓기)-->
+	<select id="total" resultType="int" parameterType="map">
+		SELECT count(*) 
+		FROM spring5_board
+	<if test="searchWord != null and type != null" >
+			<where>
+				<if test="type =='title'">
+					upper(title) like '%' || upper(#{searchWord}) || '%'
+				</if>
+				
+				<if test = "type =='contents'">
+					upper(contents) like '%' || upper(#{searchWord}) || '%'
+				</if>
+				
+				<if test = "type == 'memberid'">
+					memberid = #{searchWord}
+				</if>
+				
+				<if test ="type == 'all'">
+					upper(title) like '%' || #{searchWord} || '%'
+					or upper(contents) like '%' || #{searchWord} || '%'
+					or memberid = #{searchWord}
+				</if>
+			</where>
+		</if>
+	</select>
+	
+	<!-- 글 1개 읽기 
+	리절트타입은 셀렉트의 결과 
+	이문장을 실행하기위해 외부에서 가져오는건
+	파라미터 타입-->
+	<select id="read" parameterType="int" resultType="Board">
+		SELECT
+			boardnum
+			, memberid
+			, title
+			, contents
+			, hits
+			, to_char(inputdate,'yy/mm/dd')inputdate
+			, originfile
+			, savedfile
+		FROM
+			spring5_board
+		WHERE
+			boardnum = #{boardnum}
+		ORDER BY
+			boardnum desc 
+	</select>
+	
+	<!-- 조회수올리기 -->
+	<update id="add" parameterType="int">
+		UPDATE
+			spring5_board
+		SET
+			hits = hits + 1
+		WHERE
+			boardnum = #{boardnum} 
+	</update>
+	
+	<!--글 삭제-->
+	<delete id="delete" parameterType="int">
+		DELETE
+		FROM
+			spring5_board
+		WHERE
+			boardnum = #{boardnum}
+	</delete>
+	
+	
+	
+</mapper>

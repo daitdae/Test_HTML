@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>    
+        window.onload = function(){ //익명의 함수를 이벤트랑 연결한거라는 뜻의 코드
+
+             let btn = document.getElementById("btn");  //[] {} html = obcject(얜 html)
+             btn.onclick = function(){  //버튼을 클릭하면 이 함수가 떳으면 좋겠어! 라는 말
+
+            // 값을 넣을때는 equal의 반대에 넣는다
+            document.getElementById("header").innerHTML = "값을 바꿉니다.";
+            document.getElementById("usrname").value = "손오공"; //.value는 특정값을 넣겠다는 뜻
+
+            //이미지 대체하는 코드 document.getElementById("cat").setAttribute("src",img) ,img넣어 줘야함
+            let img = "https://dimg.donga.com/wps/NEWS/IMAGE/2022/01/28/111500268.2.jpg";
+            document.getElementById("cat").setAttribute("src",img);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2 id="header">이것은 h2</h2>
+    <input id="usrname" type="text" placeholder="이름을 입력"><br>
+    <img id="cat" src="http://www.chemicalnews.co.kr/news/photo/202106/3636_10174_4958.jpg"><br>
+    <br>
+    <input id="btn" type="button" value="Click">
+    
+</body>
+</html>

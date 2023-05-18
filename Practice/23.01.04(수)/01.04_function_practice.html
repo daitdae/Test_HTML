@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function practice</title>
+    <script>
+        function calc(){
+            let x = document.getElementById("x")
+            let y = document.getElementById("y")
+
+            let result = parseFloat(x.value)+parseFloat(y.value);
+            document.getElementById("result").value =result;
+        }
+    </script>
+</head>
+<body>
+        <label for="x">x: </label>
+        <input id="x" type="text">
+
+        <label for="y">y: </label>
+        <input id="y" type="text">
+
+        <input id="add" type="button" value="+" onclick="calc();">
+        <input id="clear" type="button" value="c" onclick="">
+
+        <input id="result" type="text" readonly>
+
+    
+</body>
+</html>

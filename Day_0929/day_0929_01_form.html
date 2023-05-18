@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Practice</title>
+    <link rel="stylesheet" href="./style/form.css">
+</head>
+<!-- ctrl+/ 주석 단축키 -->
+<!-- 오늘한내용 복습좀 해보자 조금 어려움 -->
+<body>
+    <div class="content">
+        <h2>다양한 폼 태그</h2>
+        <form method="post">
+            <table>
+                <tr>
+                    <th><label for="usrid">사용자 아이디</label></th>
+                    <td>
+                        <input type="text" id="usrid" name="usrid" placeholder="5~8사이 아이디" maxlength="8">
+                        <input type="button" value="중복확인">
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="usrname">사용자 이름</label></th>
+                    <td><input type="text" id="usrname" name="usrname" placeholder="실명입력"></td>
+                </tr>
+                <tr>
+                    <th><label for="usrpwd">비밀번호</label></th>
+                    <td><input type="password" id="usrpwd" name="usrpwd" placeholder="5~8사이"></td>
+                </tr>
+                <tr>
+                    <th><label for="email">이메일</label></th>
+                    <td><input type="email" id="email" name="email" placeholder="email 입력"></td>
+                </tr>
+
+                <!--내가 한거
+                <tr>
+                    <th><label for="gender"> 성별  </label></th>
+                        <td>
+                            <input type="radio" name="gender" value="남성"> 남성
+                            <input type="radio" name="gender" value="여성"> 여성
+                        </td>
+                </tr>
+                -->
+
+                <!--예제-->
+                <th>성별</th>
+                    <td>
+                        <input id="male" type="radio" name="gender" value="male" checked="checked">
+                        <label for="male">남성</label>
+                        <input id="female" type="radio" name="gender" value="female">
+                        <label for="female">여성</label>
+                    </td>
+
+                    
+                        
+                </tr>
+
+                <tr>
+                    <th>취미</th>
+                    <td>
+                        <label for="soccer">축구</label>
+                        <input id="soccer" type="checkbox" name="hobby" value="축구">
+                        <label for="baseball">야구</label>
+                        <input id="baseball" type="checkbox" name="hobby" value="야구">
+                        <label for="soccer">축구</label>
+                        <input id="soccer" type="checkbox" name="hobby" value="축구">
+                        <label for="soccer">축구</label>
+                        <input id="soccer" type="checkbox" name="hobby" value="축구">
+                    </td>
+                </tr>
+                
+                <tr>
+                    <th><label for="birth"> 생년월일: </label></th>
+                    <td><input type="date" id="birth" name="birth"></td>
+                    
+                </tr>
+                <!--내가 한거
+                <tr>
+                    <th>
+                        <label for="location"> 지역 : 
+                            <input type="radio" name="location" value="부산"> 부산
+                            <input type="radio" name="location" value="서울" checked> 서울
+                            <input type="radio" name="location" value="인천"> 인천
+                            <input type="radio" name="location" value="대전"> 대전
+                            <input type="radio" name="location" value="제주"> 제주
+                        </label>
+                    </th>
+                 </tr>  -->
+                
+                 <tr> <!--모양 확인해보면 어떤건지 알수 있음-->
+                    <th><label for="location">지역<label></th>
+                    <td>
+                        <select id="location" name="location">
+                            <optgroup label="서울"> <!--서울은 그룹 이름이라 선택불가 밑에 밸류에서 선택-->
+                                <option value="강남구">강남구</option>
+                                <option value="동작구" selected="selected">동작구</option> 
+                                <!--selected는 맨위에걸 제치고 젤 먼저 화면에 출력됨 ="selected"는 생략가능-->
+                                <option value="영등포구">영등포구</option>
+                                <option value="관악구">관악구</option>
+                                <option value="서초구">서초구</option>
+                            </optgroup>
+
+                            <optgroup label="기타">
+                                <option value="제주">제주</option>
+                                <option value="인천">인천</option>
+                                <option value="수원">수원</option>
+                                <option value="부산">부산</option>
+                            </optgroup>
+                        </select>
+                    </td>
+                 </tr>
+
+                 <tr> 
+                    <th><label for="location2">지역2<label></th>
+                    <td>
+                        <select id="location2" size="3" name="location2" multiple>
+                            <!--화면에 출력되는게 몇갠지가 사이즈 멀티플은 여러개 고를수 있게 쉬프트 누르면서-->
+                            <optgroup label="서울">
+                                <option value="강남구">강남구</option>
+                                <option value="동작구" selected="selected">동작구</option> 
+                                <option value="영등포구">영등포구</option>
+                                <option value="관악구">관악구</option>
+                                <option value="서초구">서초구</option>
+                            </optgroup>
+
+                            <optgroup label="기타">
+                                <option value="제주">제주</option>
+                                <option value="인천">인천</option>
+                                <option value="수원">수원</option>
+                                <option value="부산">부산</option>
+                            </optgroup>
+                        </select>
+                    </td>
+                 </tr>
+
+                 <tr> <!--여러줄 글상자 넣기 textarea-->
+                    <th><label for="opinion">의견</label></th>
+                    <td>
+                        <textarea name="opinion" rows="5" cols="50"></textarea> 
+                        <!--끝태그전에 공백이나 줄띄면 안됨 그대로 적용되서 나옴-->
+                        <!--rows 줄수 cols?-->
+                    </td>
+                 </tr>
+
+                 <tr>
+                    <th colspan="2">
+                        <input type="submit" value="전송">
+                        <input type="reset" value="취소">
+                        <!--밑에 두개는 잘 안쓰는거-->
+                        <input type="image" src="./images/button.png" height="30">
+                        <button type="button">임시버튼</button>
+                    </th>
+                 </tr>
+            </table>
+        </form>        
+    </div>
+    
+</body>
+</html>
+
+<!-- tr>th >는 부모자식간의 관계 태그자동완성용-->

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){ //익명의 함수를 이벤트랑 연결한거라는 뜻의 코드
+
+            //클릭버튼을 눌렀을때 이것은 h2 라는 문구가 뜨게 하는 코드
+            let btn = document.getElementById("btn");  //[] {} html = obcject(얜 html)
+            btn.onclick = function(){ //버튼을 클릭하면 이 함수가 떳으면 좋겠어! 라는 말
+
+                let data = document.getElementById("header").innerHTML; //바로가져와도됨(문자열)
+                alert(data);
+
+            //사람이 직접입력한 데이터를 가져올때는 .value    
+                let usrname = document.getElementById("usrname").value;
+                alert(usrname);     //여기까지만 하면 두번멈춤이 일어남
+
+            // 이미지의 소스값을 가져오는 코드 ID로 불러오고 .getattribute 씀
+                let img = document.getElementById("cat").getAttribute("src");
+                alert(img);
+            // 값을 넣을때는 equal의 반대에 넣는다
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2 id="header">이것은 h2</h2>
+    <input id="usrname" type="text" placeholder="이름을 입력"><br>
+    <img id="cat" src="http://www.chemicalnews.co.kr/news/photo/202106/3636_10174_4958.jpg"><br>
+    <br>
+
+    <input id="btn" type="button" value="Click">
+    
+</body>
+</html>

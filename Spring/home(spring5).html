@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[ Spring 5 ]</title>
+</head>
+<body>
+    <h1>[ Spring 5 ]</h1>
+
+    <!-- true면 출력 아니면 출력을 안시켜주는 역할을 한다 -->
+    <p sec:authorize="isAuthenticated()">로그인 중</p> 
+    
+
+    <!-- http://localhost8888/spring5/member/join -->
+    <p sec:authorize="not isAuthenticated()"><a th:href="@{/member/join}">회원가입</a></p>
+    <p sec:authorize="not isAuthenticated()"><a th:href="@{/member/loginForm}">로그인</a></p>
+    <!-- 로그아웃은 딴거 필요없이 이것만 있으면 그냥 로그아웃된다 -->
+    <p sec:authorize="isAuthenticated()"><a th:href="@{/member/logout}">로그아웃</a></p>
+    <p sec:authorize="isAuthenticated()"><a th:href="@{/member/mypage}">개인정보수정</a></p>
+    <p><a th:href="@{/board/list}">게시판</a></p>
+    <p><a th:href="@{/thymeleaf}">Security 관련 thymeleaf</a></p>
+    
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>menu-3 practice</title>
+    <style>
+      *{              
+            padding: 0;
+            margin: 0;
+        }
+        ul{
+            width: 1200px;
+            height: auto;
+            margin: 0 auto;
+        }
+        li{
+            float: left;
+            width: 20%;
+            height: 60px;
+            list-style-type: none;
+            background-color: cornflowerblue;
+            text-align: center;
+            padding-top: 30px;
+        }
+        li:hover{
+            background-color: darkmagenta;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+
+            let temp = document.getElementById("intro");
+
+            temp.onmouseover = function(){
+                let img1 = document.getElementById("img1");
+                img1.style.display = "block";
+            }
+            temp.onmouseout = function(){
+                let img1 = document.getElementById("img1");
+                img1.style.display = "none";
+            }
+
+            let temp2 = document.getElementById("book");
+            
+            temp2.onmousemove = function(){
+                let img2 = document.getElementById("img2");
+                img2.style.display = "block";
+            }
+            temp2.onmouseout = function(){
+                let img2 = document.getElementById("img2");
+                img2.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+    <ul>
+        <li id="intro">회사소개</li>
+        <li id="book">도서</li>
+        <li>자료실</li>
+        <li>질문답변</li>
+        <li>동영상강의</li>
+    </ul>
+
+    <div id="img1">
+        <img src="C:\Users\user\Pictures\Saved Pictures\trees-g4ee81651c_1920.jpg"
+            style="width: 300px; height: 300px;">
+    </div>
+
+    <div id="img2">
+        <img src="C:\Users\user\Pictures\Saved Pictures\gift-gdd8e67789_1920.jpg" 
+            style="width: 300px; height:300px;">
+    </div>
+    
+</body>
+</html>

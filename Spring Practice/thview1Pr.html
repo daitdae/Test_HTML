@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>thymeleaf</title>
+</head>
+<body>
+    <h2>[ thymeleaf 문법 1 ]</h2>
+    <h3>* 값 출력</h3>
+
+    <p th:text="${str}">문자열 출력</p>
+    <p>[[${str}]]</p>
+    <p th:text="${num}">0</p>
+    <p th:text="${PersonPr}"></p>
+    <p th:text="${PersonPr.id}"></p>
+    <p th:text="${PersonPr.name}"></p>
+    <p th:text="${tag}">태그 이런식으로 그냥 보내면 인식못함</p>
+    <p th:utext="${tag}"></p>
+    <p th:text="${url}"></p>
+    <br>
+
+    <h3>* 주석</h3>
+    <p>일반 html 주석</p>
+    <!-- <p th:text="${str}"></p> -->
+    <!-- <p>[[${str}]]</p> -->
+
+    <p>타임리프 주석(띄어쓰기 따짐)</p>
+    <!--/* <p th:text="${str}"></p> */-->
+    <!--/* <p>[[${str}]]</p> */-->
+    <br>
+
+    <h3>* 경로 생성</h3>
+    <p><a href="http://google.com">구글로 이동</a></p>
+    <p><a th:href="${url}">구글로 이동</a></p>
+
+    <p><a href="../param/test1Pr">GET TEST로 가는 상대경로</a></p>
+    <p><a th:href="@{/param/test1Pr}">GET TEST로 가는 상대경로</a></p>
+
+    <p><img src="../images/honoka.jpg"></p>
+    <p><img th:src="@{/images/honoka.jpg}"></p>
+
+    <h3>* 연산자</h3>
+    <!-- 산술연산자 + - * / % -->
+    <p th:text="${num + 1}">101</p> 
+    <p th:text="${num - 90}">10</p> 
+    <p th:text="${num * 2}">200</p> 
+    <p th:text="${num / 5}">20</p>
+    <p th:text="${num % 3}">1</p> 
+
+    <!-- 비교연산자 > < <= >= == != lt gt le ge eq ne 결과값: true false -->
+    <p th:text="${num > 100}"></p>
+
+    <!-- 논리연산자 and or not -->
+    <p th:text="${num ge 1 and num le 100}"></p>
+    <p th:text="${num >= 1 && num <= 100}"></p>
+    <p th:text="${num <= 1 || num >= 100}"></p>
+
+    <!-- 문자열 연산자 -->
+    <p th:text="${str + '123'}"></p>
+    <p th:text="|1234{str}abcd|"></p>
+    <p th:text="${str.equals('review')}"></p>
+    <p th:text="${not str.equals('review')}"></p>
+    <p th:text="${str == 'review'}"></p>
+    <p th:text="${str != 'review'}"></p>
+
+    <h3>* 객체 출력</h3>
+    <div th:object="${PersonPr}">
+        <p th:text="*{id}"></p>
+        <p th:text="*{name}"></p>
+        <p th:text="*{com}"></p>
+    </div>
+
+    <h3>* 포메팅</h3>
+    <p th:text="${inum}"></p>
+    <p th:text="${dnum}"></p>
+    <p th:text="${dnum2}"></p>
+    <p th:text="${date}"></p>
+
+    <p th:text="${#numbers.formatInteger(inum,10)}"></p>
+    <p th:text="${#numbers.formatInteger(inum,3,'COMMA')}"></p>
+    <p th:text="${#numbers.formatDecimal(dnum,3,'COMMA',2,'POINT')}"></p>
+    <p th:text="${#numbers.formatPercent(dnum2, 0, 2)}"></p>
+
+    <p th:text="${#dates.format(date, 'yyyy/MM/dd HH:mm')}"></p>
+    <p th:text="${#dates.format(date, 'yyyy/MM/dd hh:mm')}"></p>
+
+</body>
+</html>

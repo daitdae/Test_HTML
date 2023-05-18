@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+                <head>
+                    <title>ANABADA</title>
+                    <meta charset="utf-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
+                
+                    <link rel="apple-touch-icon" th:href="@{/assets/img/apple-icon.png}">
+                    <link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/img/favicon.ico}">
+                
+                    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+                    <link rel="stylesheet" th:href="@{/assets/css/templatemo.css}">
+                    <link rel="stylesheet" th:href="@{/assets/css/custom.css}">
+                
+                    <!-- Load fonts style after rendering the layout styles -->
+                    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+                    <link rel="stylesheet" th:href="@{/assets/css/fontawesome.min.css}">
+                    <link rel="stylesheet" th:href="@{/assets/css/custom.css}">
+                
+                    <!--           -->
+                    <meta name="author" content="Untree.co">
+                    <link rel="shortcut icon" th:href="@{/assets/img/favicon.png}">
+                
+                    <meta name="description" content="" />
+                    <meta name="keywords" content="bootstrap, bootstrap5" />
+                    
+                    <link rel="preconnect" href="https://fonts.googleapis.com">
+                    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+                
+                
+                    <link rel="stylesheet" th:href="@{/assets/property_fonts/icomoon/style.css}">
+                    <link rel="stylesheet" th:href="@{/assets/property_fonts/flaticon/font/flaticon.css}">
+                
+                    <link rel="stylesheet" th:href="@{/assets/property_css/tiny-slider.css}">
+                    <link rel="stylesheet" th:href="@{/assets/property_css/aos.css}">
+                    <link rel="stylesheet" th:href="@{/assets/property_css/style.css}">	
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+                
+                    <!-- 개인 css-->
+                    <link rel="stylesheet" th:href="@{/css/css_usedBuyWrite(JSBW).css}">
+<!--
+    
+TemplateMo 559 Zay Shop
+
+https://templatemo.com/tm-559-zay-shop
+
+-->
+	<script th:src="@{/jQuery/jquery-3.6.3.min.js}"></script>
+
+    <style>
+      .hidden {
+      display:none;
+      color: red;
+      }
+    </style>
+    
+	<script>
+		$(document).ready(function(){
+			$('#write').submit(submitcheck);
+	
+		});	
+	
+		
+		function submitcheck(){
+			if($('#used_title').val().trim() == ""){
+				$('#used_title ~ div').css("display" ,"block");
+				return false;
+			}else{
+				$('#used_title ~ div').css("display" ,"none");
+			}
+			
+			if($('#used_price').val() == "" || $('#used_price').val() <= 0){
+				$('tr.hidden').css("display" ,"block");
+				return false;
+			}else{
+				$('tr.hidden').css("display" ,"none");
+			}
+
+			if(!$('#uploadOne').val()){
+				$('#uploadOne ~ div').css("display" ,"block");
+				return false;
+			}else{
+				$('#uploadOne ~ div').css("display" ,"none");
+			}	
+			
+			if($('#used_content').val().trim().length <= 50){
+				$('#used_content ~ div').css("display" ,"block");
+				return false;
+			}else{
+				$('#used_content ~ div').css("display" ,"none");
+			}
+			
+		}
+	
+	</script>
+
+
+</head>
+
+<body>
+    <!-- Start Top Nav -->
+    <!-- <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
+        <div class="container text-light">
+            <div class="w-100 d-flex justify-content-between">
+                <div>
+                    <i class="fa fa-envelope mx-2"></i>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:anabada@anabada.com">anabada@anabada.com</a>
+                    <i class="fa fa-phone mx-2"></i>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="tel:010-1111-2222">010-1111-2222</a>
+                </div>
+            </div>
+        </div>
+    </nav> -->
+    <!-- Close Top Nav -->
+
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <a class="navbar-brand text-success logo h1 align-self-center" th:href="@{/}" id="title_logo">
+                ANABADA
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
+                <div class="flex-fill">
+                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" th:href="@{/used/usedSellBoard}" id="usedDropdown" role="button" aria-haspopup="true" aria-expanded="false">USED</a>
+                            <div class="dropdown-menu" aria-labelledby="usedDropdown">
+                                <a class="dropdown-item"  th:href="@{/used/usedSellBoard}">중고판매</a>
+                                <a class="dropdown-item"  th:href="@{/used/usedBuyBoard}">중고구매</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/rental/rentalBoard}">RENTAL</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/auction/auctionBoard}">AUCTION</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">MAP</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">INTRODUCTION</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar align-self-center d-flex">
+                    <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
+                            <div class="input-group-text">
+                                <i class="fa fa-fw fa-search"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
+                        <i class="fa fa-fw fa-search text-dark mr-2"></i>
+                    </a> -->
+                    <!-- <a class="nav-icon position-relative text-decoration-none" href="#">
+                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
+                    </a> -->
+
+                    <a class="nav-icon position-relative text-decoration-none" id="dropdownMenuLink" aria-expanded="false">
+                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
+                    </a>
+                      <div id="dropdownMenu" class="dropdown-menu" style="display:none;">
+                        <!-- 이 부분은 나중에 시큐리티 처리 해야할듯 -->
+                        <a class="dropdown-item" th:href="@{/login}">로그인</a>
+                        <a class="dropdown-item" th:href="@{/mypage/mypage}">마이페이지</a>
+                        <a class="dropdown-item" href="#">로그아웃</a>
+                      </div>
+                      
+                    <a class="nav-icon position-relative text-decoration-none" href="#" id="dropdownMenuButton-lang">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
+                            <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
+                        </svg>
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-lang">
+                        <a class="dropdown-item" href="#">한국어</a>
+                        <a class="dropdown-item" href="#">日本語</a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </nav>
+    <!-- Close Header -->
+
+    <!-- Modal -->
+    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="w-100 pt-1 mb-5 text-right">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="get" class="modal-content modal-body border-0 p-0">
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
+                    <button type="submit" class="input-group-text bg-success text-light">
+                        <i class="fa fa-fw fa-search text-white"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 글 쓰는 폼 -->
+    
+    <!-- <form th:action="@{usedSellWrite}" method="post" id="write"
+            enctype="multipart/form-data">
+            
+            <input type="hidden" name="uloc_id" value="uloc000001">
+            <input type="hidden" name="sloc_id" value="sloc000001">
+          
+    <table>
+        <tr>
+            <th><h1>중고 거래 파는 글 쓰기</h1></th>
+            <td colspan="2" class="white pull-right" style="position:absolute; right: 0;">
+                <input type="button" value="임시등록">
+                <input type="submit" value="등록">
+            </td>
+        </tr>
+    </table>
+
+        <div class="categories_option">
+            <select id="category_id" name="category_id" class="select_categories">
+                <option value="CATE000001">피규어/완구/취미</option>
+                <option value="2">피규어/완구/취미</option>
+                <option value="3">피규어/완구/취미</option>
+            </select>
+        </div>    
+          
+        <div class="name_merchandise">
+            <input type="text" id="used_title" name="used_title" placeholder="상품명을 입력하세요" class="input_name_meerchandise">
+      	<div class="hidden">
+ 				상품명을 입력해 주세요.
+		</div>
+        </div>
+    <table class="table_writingContent">
+        <tr>
+            <th>
+                판매 가격*
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" id="used_price" name="used_price" placeholder="가격을 입력해 주세요" class="input_price"> 원
+            </td>
+        </tr>
+		<tr class="hidden">
+ 			<td>가격을 입력해 주세요.</td>
+		</tr>
+        <tr>
+            <th>상품 상태</th>
+        </tr>
+
+        <tr>
+            <th>
+                 일단해보고 안되면 다시해보자 -->
+                <!-- <input type="radio" id="used_quality" name="used_quality" value="미개봉"> 미개봉
+                <input type="radio" id="used_quality" name="used_quality" value="사용감 있음" checked> 사용감 있음
+                <input type="radio" id="used_quality" name="used_quality" value="파손 있음"> 파손 있음
+            </th>
+        </tr>
+        </table>
+    
+        <div class="">
+            * 등록시 주의사항
+        </div>
+
+        <div class="">
+            주의사항주의사항주의사항주의사항주의사항주의사항주의사항
+            주의사항주의사항주의사항주의사항주의사항주의사항주의사항
+        </div>
+        <br>
+        <div class="">
+            <p>대표 사진첨부(1장만 가능합니다)</p>
+            <input type="file" id="uploadOne" name="uploadOne" value="1장만 가능합니다">
+           	<div class="hidden">
+ 				사진을 업로드해 주세요.
+			</div>
+        </div>
+        <br>
+        <div class="">
+            <p>사진첨부(10장까지 가능)</p>
+            <input type="file" id="upload" name="upload" value="10장까지 가능" multiple>
+        </div>
+        <br>
+        
+        <div class="">
+            *글 편집하는 기능 넣는 부분
+        </div>
+
+        <div class="">
+            <textarea name="used_content" id="used_content" style="width:400px"></textarea>
+        <div class="hidden">
+ 				상세설명을 50자 이상 입력해 주세요.
+		</div>
+        </div>
+    </form> --> 
+
+    <article>
+      
+        <div class="container" role="main">
+      
+            <h2>중고 거래 판매 글 쓰기</h2>
+      
+            <form th:action="@{usedSellWrite}" method="post" id="write"
+                    enctype="multipart/form-data">
+                    <!-- <input type="hidden" name="user_email" th:value="">  -->
+                    <input type="hidden" name="uloc_id" value="uloc000001">
+                    <input type="hidden" name="sloc_id" value="sloc000001">
+                
+                <div class="mb-3">
+                    <label for="used_title">제목</label>
+                    <input type="text" class="form-control" id="used_title" name="used_title" placeholder="제목을 입력해 주세요">
+                </div>
+      
+                <div class="mb-3">
+                    <label for="category">카테고리</label><br>
+                    <select id="category_id" name="category_id" class="select_categories">
+                        <option value="CATE000001">피규어/완구/취미</option>
+                        <option value="2">피규어/완구/취미</option>
+                        <option value="3">피규어/완구/취미</option>
+                    </select>
+                </div> 
+      
+                <div class="mb-3">
+                    <label for="used_quality">상품상태</label><br>
+                    <input type="radio" id="used_quality" name="used_quality" value="미개봉"> 미개봉
+                    <input type="radio" id="used_quality" name="used_quality" value="사용감 있음" checked> 사용감 있음
+                    <input type="radio" id="used_quality" name="used_quality" value="파손 있음"> 파손 있음
+                </div>
+      
+                <div class="mb-3">
+                    <label for="used_price">판매가격</label>
+                    <input type="text" class="form-control" id="used_price" name="used_price" placeholder="가격을 입력해 주세요">
+                </div>
+      
+                <div class="mb-3">
+                    <label for="caution">*등록시 주의사항<br> 
+                        주의사항주의사항주의사항주의사항주의사항주의사항주의사항
+                        주의사항주의사항주의사항주의사항주의사항주의사항주의사항</label>
+                    <!-- <input type="text" class="form-control" name="tag" id="tag" placeholder="태그를 입력해 주세요"> -->
+                </div>
+                
+                <div class="mb-3">
+                <label for="uploadOne">대표 사진첨부(1장만 가능합니다)</label>
+                    <input type="file" id="uploadOne" name="uploadOne" value="1장만 가능합니다">
+                    <div class="hidden">
+                        사진을 업로드해 주세요.
+                    </div>
+                </div>
+      
+                <div class="mb-3">
+                    <label for="upload">사진첨부(10장까지 가능)</label>
+                    <input type="file" id="upload" name="upload" value="10장까지 가능" multiple>
+                </div>
+                
+                
+                <div class="mb-3">
+                    *글 편집하는 기능 넣는 부분
+                </div>
+      
+                <div class="mb-3">
+                    <label for="content">내용</label>
+                    <textarea class="form-control" rows="5" name="used_content" id="used_content" placeholder="내용을 50자 이상 입력해 주세요" ></textarea>
+                </div>
+                
+                <div>
+                    <button onclick="saveDraft()">임시저장</button>
+                    <input type="submit" value="저장">
+                </div>
+            </form>
+        </div>
+        </article>
+    
+
+    <!-- Start Footer -->
+    <footer class="bg-dark" id="tempaltemo_footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">ANABADA</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li>
+                            <i class="fas fa-map-marker-alt fa-fw"></i>
+                            06164 서울특별시 강남구 영동대로 513<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(삼성동, 코엑스) 4층 ICT센터
+                        </li>
+                        <li>
+                            <i class="fa fa-phone fa-fw"></i>
+                            <a class="text-decoration-none" href="tel:010-1111-2222">010-1111-2222</a>
+                        </li>
+                        <li>
+                            <i class="fa fa-envelope fa-fw"></i>
+                            <a class="text-decoration-none" href="mailto:anabada@anabada.com">anabada@anabada.com</a>
+                        </li>
+                    </ul>
+                </div>
+                
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">Menu</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li><a class="text-decoration-none" th:href="@{/used/usedSellBoard}">중고거래</a></li>
+                        <li><a class="text-decoration-none" th:href="@{/rental/rentalBoard}">렌    탈</a></li>
+                        <li><a class="text-decoration-none" th:href="@{auctionBoard}">경    매</a></li>
+                        <li><a class="text-decoration-none" href="#">지 도</a></li>
+                        <li><a class="text-decoration-none" href="#">프로젝트 소개</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">Informations</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li><a class="text-decoration-none" th:href="@{/indexMain}">Home</a></li>
+                        <li><a class="text-decoration-none" href="#">About Us</a></li>
+                        <li><a class="text-decoration-none" href="#">Shop Locations</a></li>
+                        <li><a class="text-decoration-none" href="#">FAQs</a></li>
+                        <li><a class="text-decoration-none" href="#">Contact</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="row text-light mb-4">
+                <div class="col-12 mb-3">
+                    <div class="w-100 my-3 border-top border-light"></div>
+                </div>
+                <div class="col-auto me-auto">
+                    <ul class="list-inline text-left footer-icons">
+                        <!-- <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i class="fab fa-twitter fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
+                        </li> -->
+                    </ul>
+                </div>
+                <div class="col-auto">
+                    <label class="sr-only" for="subscribeEmail">Email address</label>
+                    <!-- <div class="input-group mb-2">
+                        <input type="text" class="form-control bg-dark border-light" id="subscribeEmail" placeholder="Email address">
+                        <div class="input-group-text btn-success text-light">Subscribe</div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="w-100 bg-black py-3">
+            <div class="container">
+                <div class="row pt-2">
+                    <div class="col-12">
+                        <p class="text-left text-light">
+                            <!-- Copyright &copy; 2021 Company Name 
+                            | Designed by <a rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a> -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+    </footer>
+    <!-- End Footer -->
+
+    <!-- Start Script -->
+    <script th:src="@{/assets/js/jquery-1.11.0.min.js}"></script>
+    <script th:src="@{/assets/js/jquery-migrate-1.2.1.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/assets/property_js/tiny-slider.js}"></script>
+    <script th:src="@{/assets/property_js/aos.js}"></script>
+    <script th:src="@{/assets/property_js/navbar.js}"></script>
+    <script th:src="@{/assets/property_js/counter.js}"></script>
+    <script th:src="@{/assets/js/templatemo.js}"></script>
+    <script th:src="@{/assets/property_js/custom.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script th:src="@{/js/js_usedSellWrite(JPBW).js}"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- End Script -->
+   
+</body>
+
+</html>

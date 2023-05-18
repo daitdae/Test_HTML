@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내장객체 사용하기</title>
+    <script>
+        window.onload = function(){ //onload라는 이벤트에 걸려있다는 의미
+            inner();    //inner function 호출
+            // setInterval(inner,1000); 
+            // 1)함수를 전달(함수의 이름만 쓰면 됨) 2) 밀리초  의미는 밀리초 이후에 함수를 전달해라(영원히)
+            let timer;
+            document.getElementById("start").onclick = function(){
+                timer = setInterval(inner,1);    //함수를 변수에 저장가능
+            }
+            document.getElementById("stop").onclick = function(){
+                clearInterval(timer);   //멈추고 싶은 인터벌을 넣어주면 됨
+            }
+
+        }  
+
+        function inner(){
+            let target = document.getElementById("sample");
+
+            let today = new Date();
+
+            let year = today.getFullYear();    
+            let month = today.getMonth() + 1;  
+            let day = today.getDate();
+            let hour = today.getHours();
+            let minute = today.getMinutes();
+            let second = today.getSeconds();
+            let milli = today.getMilliseconds();
+
+            let data = `${year}년 ${month}월 ${day}일 ${hour}:${minute}:${second}:${milli}`; 
+            target.innerHTML = data;
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <input type="button" value="start" id="start">&nbsp;
+        <input type="button" value="stop" id="stop">&nbsp;
+    </div>
+    <h1 id="sample"></h1>
+</body>
+</html>

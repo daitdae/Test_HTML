@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>retry menu-1</title>
+</head>
+<style>
+    li{
+       border: 1px solid red;
+       list-style-type: none;
+       padding-top: 12px;
+       width: 100px;
+       height: 40px;
+       text-align: center;
+    }
+    li:hover{
+        background: saddlebrown;
+        cursor: pointer;
+    }
+    h2{display: none;}
+</style>
+<script>
+    window.onload = function(){
+        
+        let temp = document.getElementById("intro");
+        temp.onclick = function(){
+           let data1 = document.getElementById("data1");
+           data1.style.display = "block"; 
+        }
+        temp.onmouseout = function(){
+            let data1 = document.getElementById("data1");
+            data1.style.display="none";
+        }
+       
+        let temp2 = document.getElementById("book");
+        temp2.onmouseover = function(){
+            let data2 = document.getElementById("data2");
+            data2.style.display = "block";
+        }
+        temp2.onmouseout = function(){
+            let data2 = document.getElementById("data2");
+            data2.style.display = "none";
+        }
+    }
+    
+</script>
+<body>
+    <ul>
+        <li id="intro">회사소개</li>
+        <li id="book">도서</li>
+        <li>자료실</li>
+        <li>질문답변</li>
+        <li>동영상강의</li>
+    </ul>
+<hr>
+
+<h2 id="data1">Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+    Cupiditate voluptatum ut sequi officiis blanditiis aspernatur beatae? 
+    Animi ipsa cupiditate ab, ratione quidem temporibus sunt minus minima aspernatur deserunt a aliquid?</h2>
+
+<h2 id="data2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+    Cupiditate voluptatum ut sequi officiis blanditiis aspernatur beatae? 
+    Animi ipsa cupiditate ab, ratione quidem temporibus sunt minus minima aspernatur deserunt a aliquid?</h2>
+    
+</body>
+</html>

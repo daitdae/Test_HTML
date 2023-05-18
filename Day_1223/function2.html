@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let a = "10";
+        let b = "42.195";
+        let c = a + b;  //이렇게 하면 그냥 문자열 결합해서 1042.195라고 나옴
+        console.log(c); //browser console 창에서 확인할 수 있다.
+
+        let d = parseInt("10");
+        let e = parseFloat("42.195");
+        let f = d + e;
+        console.log(f);     //이런식으로 변환해서 출력
+
+        let g = parseInt("10.56");  //정수로 변환 가능한 부분만 처리(중간에 정수가 아닌 데이터가 들어오면 뒤를 전부 무시)
+        let h= parseFloat("42.195");
+        let i = g + h;
+        console.log(i);
+        console.log(g);
+
+        let j = parseInt("10.56");
+        let k = parseFloat("4t2.195");  //이것도 마찬가지임
+        let l = j + k;
+        console.log(k);
+        console.log(l);
+
+        let x = "46k"; //(not a number 숫자가 아닌걸 잘못입력받았을때 쓰는 함수 true false로 나옴)
+        if(isNaN(x)) {
+            alert("문자가 입력되어있습니다.");
+        } else {
+            alert("숫자가 잘 입력되었습니다.");
+        }
+        console.log(isNaN(x)); //문자가 포함되어있으면 true가 뜸
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

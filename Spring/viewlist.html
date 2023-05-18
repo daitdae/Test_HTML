@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전체회원보기</title>
+   <style>
+        table{
+            border: 1px solid black; 
+            border-collapse: collapse;
+        }
+        td,th{
+            width : 100px;
+            border : 1px solid black;
+            text-align : center;
+        }
+   </style>
+   <script>
+        function deletePerson(num){ //num 이라고 하는 매개변수를 선언한것 자바와 다르게 스트링 이런거 없어도 됨
+            //location.href = 'delete?idnum=1111';    하나만 지울때 쓴다
+            // 자바스크립트에서 제공하는 대화상자
+            // alert('aaa')
+            // confirm('aaa') 네 아니오로 나옴 true false 리턴됨 if문쓸때 사용
+            // prompt('aaa') 한줄 입력 받을 수 있게 뜸
+            if(confirm('정말 삭제하시겠습니까?')){
+                location.href = 'delete?idnum='+ num; //어떤문자열에 이어붙여서 사용한거
+            }
+        }
+   </script>
+</head>
+<body>
+    <h2>전체회원보기</h2>
+    <p>[[${list}]]</p>
+    <br>
+
+    <table>
+        <tr>
+            <th>주민등록번호</th>
+            <th>이        름</th>
+            <th>나        이</th>
+            <th>수        정</th>
+            <th>삭        제</th>
+        </tr>
+        <tr th:each="person:${list}">   
+            <!-- 여기서 리스트는 모델을 어레이 리스트에 저장할때 쓰는 이름 -->
+            <td th:text="${person.idnum}"></td>
+            <td th:text="${person.name}"></td>
+            <td th:text="${person.age}"></td>
+            <td>
+                <a th:href="|update?idnum=${person.idnum}|">수정</a>
+            </td>
+            <td>
+                <!-- a태그로 직접 링크 걸어서 가능하다 -->
+                <!-- <a th:href="|delete?idnum=${person.idnum}|">삭제</a> -->
+                <input type="button" value="삭제" th:id="|bt${person.idnum}|"
+                       th:idnum="${person.idnum}" onclick="deletePerson(this.getAttribute('idnum'))"> 
+                        <!--아이디 그냥 넣으면 안됨 id="delete"-->     <!-- 딜리트함수 호출해서 현재 객체의 속성중에서 idnum의 값이라는 뜻 -->
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

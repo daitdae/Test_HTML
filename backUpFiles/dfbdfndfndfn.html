@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 중고 구매 내역 -->
+    <div id="mylistbox" th:each="list, i : ${usedListBuy}" th:if="${usedListBuy} != null">
+        <input type="hidden" th:value="${list.user_email}" id="user_email"></input>
+        <table class="mypagebox">
+            <tr>
+                <td>
+                    <div class="mypageImg">
+                        <img class="myauctionpic" th:src="@{/mypage/imgshowone(used_id=${list.used_id})}" alt="거래 글 대표사진">                                    
+                    </div>
+                </td>
+                <td >   
+                    <div class="mypageTitle">
+                        <a th:href="@{/used/usedSellBoardRead(used_id=${list.used_id})}"><span th:id="|papagoD${i.index}|" class="papago2" th:papagoCount="${i.index}" th:text="${list.used_title}" style="text-align: center;">제목</span></a>
+                    </div>
+                </td>
+                <td>
+                    <div class="mypageTwo">
+                        <div class="mypageTwo">
+                            <div th:if="${list.uDetail_status == '거래 중'}">
+                                <p><span th:text="#{usedIng}">게시글 상태</span></p>
+                            </div>
+                            <div th:if="${list.uDetail_status == '거래 완료'}">
+                                <p><span th:text="#{usedFin}">게시글 상태</span></p>
+                            </div>
+                            <div th:if="${list.uDetail_status == '거래 중지'}">
+                                <p><span th:text="#{usedStop}">게시글 상태</span></p>
+                            </div>
+                            <p th:text="${list.uDetail_Date}">날짜</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="mypagebutton"> 
+                        <!-- 거래 후기 -->             
+                        <!-- <button type="submit" class="arrow-btn1" value="거래후기" th:if="${list.uDetail_status == '거래 완료'} and ${#authentication.name} == ${list.buyer_email}" th:value="#{usedReview}" th:onclick="|location.href='@{/csform/review(used_id=${list.used_id})}'|">후기남기기</button> -->
+                        <button type="button" class="arrow-btn1" value="거래후기" th:if="${list.uDetail_status == '거래 완료'} and ${#authentication.name} == ${list.buyer_email}" th:value="#{usedReview}" th:onclick="window.open('@{/csform/review(used_id=${list.used_id})}', '_blank', 'width=500, height=500')">후기남기기</button>
+
+
+                        <!-- <button type="submit" class="arrow-btn1" style="margin-top: 0rem" th:onclick="charge([[${user.user_nick}]])">충전하러가기</button> -->
+                        
+                        <br>
+                        <!-- 거래 취소 -->
+                        <form th:action="@{/mypage/cancleUsed}" method="post" onsubmit="return usedCancleChk();">
+                            <input type="hidden" name="uDetail_id" class="cancle_usedId" th:value="${list.uDetail_id}">
+                            <input type="hidden" name="used_id" class="cancle_usedId" th:value="${list.used_id}">
+                            <input type="hidden" name="user_email" class="cancle_user_email" th:value="${user.user_email}">
+                            <input type="hidden" name="buyer_email" class="cancle_buyer_email" th:value="${list.buyer_email}">
+                            <input type="hidden" name="used_status" class="cancle_used_status" th:value="${list.used_status}">
+                            <input type="hidden" name="used_price" class="cancle_used_price" th:value="${list.used_price}">
+                            <input type="hidden" name="uDetail_status" class="cancle_uDetail_status" th:value="${list.uDetail_status}">
+                            <input class="arrow-btn1" type="submit" value="거래취소" th:value="#{usedCancle}" 
+                                th:if="${list.uDetail_status == '거래 중'} and ${list.buyer_email} == ${#authentication.name} and ${list.uDetail_status == '거래 중'}"></input>
+                        </form>
+                        <form th:action="@{/mypage/comfirmUsed}" method="post" onsubmit="return usedComfirmChk();">
+                            <input class="arrow-btn1" type="submit" value="거래완료" th:value="#{usedFin}" th:if="${list.uDetail_status == '거래 중'}"></input>
+                            <input type="hidden" name="used_id" th:value="${list.used_id}">
+                            <input type="hidden" name="buyer_email" th:value="${#authentication.name}">
+                            <input type="hidden" name="uDetail_id" th:value="${list.uDetail_id}">
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

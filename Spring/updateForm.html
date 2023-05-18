@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수정</title>
+</head>
+<body>
+    <form action="update" method="post"> <!--action 부분 주소니깐 맞춰야됨-->
+        <input type="hidden" name="idnum" th:value="${person.idnum}">
+        <!-- <input type="text" name="idnum" th:value="${person.idnum}" readonly="readonly"> 위의것과 같음 -->
+       이름: <input type="text" name="name" th:value="${person.name}"><br>
+       나이: <input type="text" name="age" th:value="${person.age}"><br>
+        <input type="submit" value="수정">
+    </form>
+    
+</body>
+</html>

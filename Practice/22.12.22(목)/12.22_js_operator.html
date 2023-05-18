@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 연산자</title>
+    <script>
+        window.onload = function(){
+            let x = 5;
+            let y = 3;
+
+            data = x+y +'<br>';
+            data += (x-y)+'<br>';
+            data += (x*y)+'<br>';
+            data += (x/y)+'<br>';
+            data += (x%y)+'<br>';
+            data += (x**y)+'<br>';
+
+            let calc = document.getElementById("result")
+            calc.innerHTML = data;
+        }
+    </script>
+</head>
+<body>
+    <h2 id="result"></h2>
+    
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가상 선택자</title>
+    <style>
+        a{text-decoration: overline;}
+        a:link{color: chartreuse;}
+        a:visited{color: black;}
+        a:hover{color: blueviolet; font-weight: bold;}
+        a:active{color: brown;}
+        li:nth-child(2n){color:red;}
+        th{background-color: aquamarine;}
+        tbody tr:nth-child(2n-1){background-color: brown;}
+        tbody tr:hover{color: chartreuse;}
+
+        p.intro::first-letter{font-size: 200%;}
+        p.intro::first-line{font-weight: bold;}
+        p:last-child::after{
+            content:"www.naver.com"; color: red;
+        }
+    </style>
+    
+</head>
+<body>
+    <a href="http://www.youtube.com">유튜브</a>&nbsp;&nbsp;
+    <a href="http://www.google.com">구글</a>&nbsp;&nbsp;
+    <a href="http://www.coupang.com">쿠팡</a>&nbsp;&nbsp;
+
+    <hr>
+
+    <ul>
+        <li>첫번째</li>
+        <li>두번째</li>
+        <li>세번째</li>
+        <li>네번째</li>
+        <li>다섯번째</li>
+        <li>여섯번째</li>
+    </ul>
+
+    <table border="1">
+        <caption>성적표</caption>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>이름</th>
+                <th>JAVA</th>
+                <th>일본어</th>
+                <th>Basic</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>홍길동</td>
+                <td>10</td>
+                <td>10</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>임꺽정</td>
+                <td>20</td>
+                <td>20</td>
+                <td>20</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>손오공</td>
+                <td>30</td>
+                <td>30</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>이건희</td>
+                <td>10</td>
+                <td>10</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>이병철</td>
+                <td>10</td>
+                <td>10</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>이재용</td>
+                <td>10</td>
+                <td>10</td>
+                <td>10</td>
+            </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2">합계</td>
+            <td>30</td>
+            <td>60</td>
+            <td>90</td>
+           </tr>
+        </tfoot>
+ </table>
+ <hr>
+
+    <h1>CSS는 Cascading Style Sheet</h1>
+    <h3>CSS는 무엇인가요?</h3>
+    <p class="intro">CSS는 Cascading Style Sheet의 약자로 웹화면의 디자인을 처리한다.</p>
+    <p>CSS는 HTML문서의 각요소가 어떻게 화면에 출력될지 결정한다.</p>
+
+    
+</body>
+</html>

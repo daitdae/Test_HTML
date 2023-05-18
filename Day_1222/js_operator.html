@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 연산자</title>
+    <script>
+        window.onload = function(){
+            //연산자
+            // bit wise 연산자 : >> << ~ & |
+            let x = 5;
+            let y = 3;
+            
+            //let result; 이러면 undifined 뜸 공백을 넣어줘야함 java int랑 다름 string=''; 느낌 
+            // += 안하고 그냥 +하면 데이터값이 초기화 되서 하나만 뜬다
+            let data = '';
+            data +='-더하기: ' + (x+y)+'<br>';
+            data +='-빼기: ' + (x-y)+'<br>';
+            data +='-곱하기: ' + (x*y)+'<br>';
+            data +='-나누기: ' + (x/y)+'<br>';
+            data +='-나머지: ' + (x%y)+'<br>';
+            data +='-거듭제곱: ' + (x**y)+'<br>';
+            
+
+            
+            // result += x+y +'<br>';
+            // result += x-y +'<br>';
+            // result += x*y +'<br>';
+            // result += x/y +'<br>';
+            // result += x%y +'<br>';
+
+            // let htmlobj = document.getElementById("result");
+            // htmlobj.innerHTML = result;
+
+            let qwer = document.getElementById("asdf"); 
+            /*지금은 코드가 짧아서 위의 코드가 없어도(그리고 id값이 틀려도)
+              출력이 된다 하지만 코드가 길어지면 asdf를 못찾는다*/
+            /*document.getElementById(id); 는 태그에 있는 id 속성을 사용하여
+                                           해당 태그에 접근하여 하고 싶은 작업을 할 때 쓰는 함수*/
+            
+            qwer.innerHTML = data; //출력자체는 이것만 있으면 되는것 같다.
+        }
+    </script>
+</head>
+<body>
+    <h2 id="asdf"></h2>
+</body>
+</html>

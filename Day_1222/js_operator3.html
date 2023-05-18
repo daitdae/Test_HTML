@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>논리연산자</title>
+    <script>
+        window.onload = function(){
+            let a = 5;
+            let b = '';
+
+            b += ((a>2) && (a<10)) + '<br>';
+            b += ((a>2) || (a<10)) + '<br>';
+            b += (!(a>2)) + '<br><br>'; //a가 2를 초과하지 않니?
+
+            b += (2 < a < 10)+ '<br><br>'; //true 
+            //1. 2 < a 부터 비교 그 결과는 true
+            //2. true < 10 보다 작냐 라고 물어본거 true를 대표하는 숫자 1 (연산하면 true는 1로 변환)
+            //3. 그래서 1<10 으로 비교를 하게 되서 결과가 true 결과적으로 아다리가 잘맞은거
+
+            b += (2 > a > 10)+ '<br>'; //false
+
+            b += (true + true)+ '<br>'; // 2
+
+            b += (true + "true")+ '<br>'; // 문자열로 변환되서 truetrue 가 나옴
+
+
+
+
+            let result = document.getElementById("result");
+            result.innerHTML = b; //b값을 꽂아 넣은거임
+
+        }
+    </script>
+</head>
+<body>
+    <h2 id="result"></h2>
+    
+</body>
+</html>

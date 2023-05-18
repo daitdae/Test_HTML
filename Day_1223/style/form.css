@@ -1,0 +1,38 @@
+div.content {
+    width: 800px; /*block 태그는 폭을 가질수 있다*/
+    background-color: aquamarine;
+    margin: 0 auto; /*12시 3시 6시 9시 시계방향으로 돌아감 clockwise*/
+}
+
+/*컨텐트 안에 있는 h2텍스트 조절 content>h2 는 컨텐트 안에 h2가 있다는 뜻 padding: 안쪽여백*/
+div.content>h2{
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 20px 0;
+}
+
+/*표에 주는거 border collaps 표 안에 선 합치는거*/
+table {
+    width: 800px;
+    border: 1px solid gray;
+    border-collapse: collapse;
+}
+/* 태그: 1, 클래스: 10 아이디: 100 */
+tr, td, th {
+    border: 1px solid gray;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+/* td태그의 안쪽 여백(왼쪽) 10px로 만들어보기 */
+/* th태그의 폭을 200px로 만들어보기 */
+td{padding-left: 10px;}
+th{width: 200px;}
+
+/* 아이디 패스워드 이메일 치는칸 크기변경*/
+input[type="text"], input[type="password"], input[type="email"]
+{
+  width: 400px;
+  height: 20px;  
+}
+/* css쓰는 이유중 하나가 html파일에 스타일 같은거 넣으면 우선순위가 높아져서 나중에 수정하기 어렵다 */

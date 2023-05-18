@@ -1,0 +1,20 @@
+처음에 프로젝트 만들어주고
+build.gradle하고 application.properies 복사해 오는데 시큐리티부분 다 주석처리로 막아준다
+
+1. home controller 와 home html작성
+
+2.회원가입 만들어준다
+    1) MemberController만들고 joinform.html만들어주기
+    * joinform.html 에 thymeleaf 잘넣었는지 확인 <html lang="ko" xmlns:th="www.thymeleaf.org">
+                       method post로 잘 넣었는지 확인 <form id="joinform" th:action="@{/member/join}" method="post"> 
+
+3. MemberController에 가입처리하는 메소드 post형식으로 만들어주기
+   Member member라는 클래스 정의 해서 한번에 받아줌 
+   
+4. domain에 멤버 클래스 정의하기
+    *) 잊지말고 lombok이용해서 import해주기
+        @Data
+        @NoArgsConstructor
+        @AllArgsConstructor
+
+ 1월 26일 수업은 여기까지

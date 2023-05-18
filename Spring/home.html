@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th ="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>[ spring2 ]</h1>
+	<h2 th:if="${session.id !=null}"><span th:text="${session.id}"></span>님 접속중</h2>
+	
+	<ol>
+		<li>로그
+		<ul>
+			<li><a href="logtest">Log 출력하기</a></li> <!-- 오류난 이유: 대소문자 가림 -->
+		</ul>
+		</li>
+		<br>
+		<li>서버와 값 주고받기
+		<ul>
+			<li><a href="param/test1">GET method로 parameter 전달</a></li>
+			<!-- 오류난 이유: 경로 설정 안함 -->
+			<!-- 컨트롤러의 @GetMapping("/param/test1") 과 같은 주소를 넣어줘야함 단 /는 넣으면 안됨-->
+			
+			<li><a href="param/input1?name=abc&age=1">GET method로 parameter 직접전달 URL에 붙여서</a></li>
+			<!-- get방식은 이런식으로 값을 직접넣고 해도 전달 가능 -->
+			
+			<li><a href="param/test2">POST method로 parameter 전달</a></li>
+			<li><a href="param/test3">POST method로 parameter 전달 - 객체로 전달</a></li>
+			
+			
+			<li><a href="param/model">모델 사용하기</a></li>
+		</ul>	
+		</li>
+        <br>
+            <li> 세션 사용하기
+                <ul>
+                    <li><a href="session/stest1">세션에 값 저장</a></li>
+                    <li><a href="session/stest2">세션에 값 읽기</a></li>
+                    <li><a href="session/stest3">세션에 값 삭제</a></li>
+                    <li><a href="session/stest4">로그인</a></li>
+					<li><a href="session/stest6">로그아웃</a></li>
+                </ul>
+            </li>
+		<br>
+			<li> 쿠키 사용하기
+				<ul>
+					<li><a href = "cookie/ck1">쿠키 저장</a></li>
+					<li><a href = "cookie/ck2">쿠키 읽기</a></li>
+					<li><a href = "cookie/ck3">쿠키 삭제</a></li>
+				</ul>
+			</li>
+			<br>
+
+			<li> Thymeleaf
+				<ul>
+					<li><a href ="th/thtest1">Thymeleaf 1 - 출력, 연산자, 서식</a></li>
+					<li><a href ="th/thtest2">Thymeleaf 2 - 제어문, 반복문</a></li>
+				</ul>
+			</li>	
+			<br>
+			
+			<li>연습문제
+				<ul>
+					<li><a href="ex/test1">계산기</a></li>
+					<li><a href="ex/test2">개인정보입력</a></li>
+					<li><a href="ex/test3">방문횟수 카운트</a></li>
+				</ul>
+			</li>
+	</ol>
+    
+</body>
+</html>

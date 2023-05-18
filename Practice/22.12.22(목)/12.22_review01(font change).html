@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="jp">
+    <head>
+        <meta charset="utf-8">
+        <title>タイトル</title>
+    
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Kosugi&display=swap');
+            *{
+                font-family: 'Kosugi', sans-serif;
+                font-size: 25px;
+            }
+        </style>
+         
+        
+    </head>
+    <body>
+        <div class = "wrapper">
+            <ul>    <!--li*숫자 하면 만들 li리스트가 입력한 수만큼 나옴-->
+                <li>東京</li>
+                <li>神奈川県</li>
+                <li>北海道</li>
+                <li>千葉県</li>
+                <li>大阪府</li>
+            </ul>    
+        </div>
+        <br>
+        <!--테이블 만드는 명령어는 한줄씩 쓰고 밑으로 내려가진다-->
+        <hr>
+        <table border="1">
+            <caption>成績表</caption>
+            <thead>
+                <tr>
+                    <th>番号</th>
+                    <th>名前</th>
+                    <th>JAVA</th>
+                    <th>日本語</th>
+                    <th>Basic</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>武田</td>
+                    <td>10</td>
+                    <td>10</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>笹田</td>
+                    <td>20</td>
+                    <td>20</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>坂本</td>
+                    <td>30</td>
+                    <td>30</td>
+                    <td>30</td>
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="2">合計</td>
+                <td>30</td>
+                <td>60</td>
+                <td>90</td>
+               </tr>
+            </tfoot>
+     </table>
+     <hr>  
+     <!--목록으로 나타나도록 할것<ul></ul>
+     google로 이동(현재창)
+     유튜브로 이동(새창)
+     네이버웹툰 첫페이지로 이동(새창)1-->
+     <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere aliquid quo atque esse, quas, 
+        et quisquam commodi rerum neque ipsam at vero.
+         Repudiandae iste temporibus quod dolores officia fuga itaque. </p>
+
+      
+     <ul> <!-- li*갯수>a : 이렇게 하면 a href까지 포함해서 자동으로 만들어줌-->
+        <li>
+            <a href="https://www.google.com">グーグル</a>
+        </li>
+        <li>
+            <a href="https://www.youtube.com" target="_blank">유튜브</a>
+        </li>
+        <li>
+            <a href="https://comic.naver.com/index" target="web">네이버웹툰</a> <!--웹이라는 이름의 창을 생성하고 거기에 새로 연다-->
+        </li>
+        <li>
+            <a href="https://daum.net/" target="web">다음</a> <!--위에 웹이라는 이름의 창이 있어서 거기에 그냥 열어버린다-->
+        </li>
+     </ul>
+     
+
+    </body>
+
+</html>

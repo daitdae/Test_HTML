@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개인정보입력</title>
+</head>
+<body>
+    <h1>개인정보입력</h1>
+    <form th:action="@{/ex/test2}" method="post">
+        이름: <input type="text" name="name" id="name">
+        주민등록번호: <input type="text" name="jumin" id="jumin">
+        <input type="submit" value="입력">
+    </form>
+    
+</body>
+</html>

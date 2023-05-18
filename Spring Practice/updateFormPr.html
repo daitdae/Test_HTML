@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update</title>
+</head>
+<body>
+    <form action="updatePr" method="post">
+        <input type="hidden" name="idnum" th:value="${personPr.idnum}">
+        이름: <input type="text" name="name" th:value="${personPr.name}">
+        나이: <input type="text" name="age" th:value="${personPr.age}">
+        <input type="submit" value="update">
+    </form>
+    <!--여기선 value에 personPr값을 넣어야한다 이유는
+    model.addAttribute("personPr",person); 이 뜻이
+    person 이란 객체를 personPr이라고 명명해 준것이기 때문-->
+    
+</body>
+</html>

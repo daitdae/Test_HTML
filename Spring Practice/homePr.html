@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home.html</title>
+</head>
+<body>
+    <h1>[ Spring Practice ]</h1>
+    <h2 th:if="${session.id !=null}"><span th:text="${session.id}"></span>님 접속중</h2>
+
+    <ol>
+        <li>로그
+            <ul>
+                <li><a href="logtest">log 출력하기</a></li>
+            </ul>
+        </li>
+        <br>
+
+        <li>서버와 값 주고 받기
+            <ul>
+                <li><a href="param/test1Pr">Get method로 파라미터 전달</a></li>
+                <li><a href="param/input1Pr?name=qwer&age=12>">Get method로 파라미터 직접전달 URL에 붙여서</a></li>
+                <li><a href="param/test2Pr">Post method로 파라미터 전달</a></li>
+                <li><a href="param/test3Pr">POST method로 파라미터 전달 - 객체로 전달</a></li>
+                <li><a href="param/model">모델 사용하기</a></li>
+            </ul>
+        </li>
+        <br>
+
+        <li>세션 사용하기
+            <ul>
+                <li><a href="session/stest1Pr">세션에 값 저장</a></li>
+                <li><a href="session/stest2Pr">세션에 값 읽기</a></li>
+                <li><a href="session/stest3Pr">세션에 값 삭제</a></li>
+                <li><a href="session/stest4Pr">로그인</a></li>
+                <li><a href="session/stest6Pr">로그아웃</a></li>
+            </ul>
+        </li>
+        <br>
+
+        <li>쿠키 사용하기</li>
+            <ul>
+                <li><a href="cookie/ck1Pr">쿠키저장</a></li>
+                <li><a href="cookie/ck2Pr">쿠키읽기</a></li>
+                <li><a href="cookie/ck3Pr">쿠키삭제</a></li>
+            </ul>
+        <br>
+
+        <li> Thymeleaf
+            <ul>
+                <li><a href="th/thtest1Pr">Thymeleaf 1</a></li>
+                <li><a href="th/thtest2Pr">Thymeleaf 2</a></li>
+            </ul>
+        </li>
+        <br>
+
+        <li> 연습문제
+            <ul>
+                <li><a href="ex/test1Pr">계산기</a></li>
+                <li><a href="ex/test2Pr">개인정보입력</a></li>
+                <li><a href="ex/test3Pr">방문횟수카운트</a></li>
+            </ul>
+        </li>
+    </ol>
+    
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        td,th{
+            width : 100px;
+            border : 1px solid black;
+            text-align: center;
+        }
+    </style>
+    <script>
+        function deletePersonPr(num){
+            if(confirm('정말삭제하시겠습니까?')){
+                location.href='deletePr?idnum='+num;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>전체 회원 보기</h2>
+    <p>[[${list}]]</p>
+    <br>
+
+    <table>
+        <tr>
+            <th>주민등록번호</th> <th>이   름</th> <th>나   이</th> <th>수   정</th> <th>삭   제</th> 
+        </tr>
+        <tr th:each="person:${list}">
+            <td th:text="${person.idnum}"></td>
+            <td th:text="${person.name}"></td>
+            <td th:text="${person.age}"></td>
+            <td>
+                <a href="|updatePr?idnum=${person.idnum}|">수정</a>
+            </td>
+            <td>
+                <input type="button" value="삭제"
+                    th:idnum="${person.idnum}" 
+                    th:id="|bt${person.idnum}|"
+                    onclick="deletePersonPr(this.getAttribute('idnum'))">
+            </td>
+        </tr>
+    </table>
+    
+</body>
+</html>

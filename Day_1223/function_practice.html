@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function practice</title>
+    <script>
+        
+        function calc(){
+            let x = document.getElementById("x") //html 객체
+            let y = document.getElementById("y")
+
+            if(isNaN(x.value)){
+                alert("x에 숫자만 입력해주세요");
+                x.focus();  //커서 가 딱 이동됨
+                x.select(); //선택이 됨
+                return;
+            } 
+            if(isNaN(y.value)){
+                alert("y에 숫자만 입력해주세요");
+                y.focus();
+                y.select();
+                return;
+            } 
+             let result = parseFloat(x.value)+parseFloat(y.value); //text로 받아서 문자열이기 때문에 숫자로 바꾸는 과정이 필요하다
+             document.getElementById("result").value = result;
+        }
+        function clr(){
+            document.getElementById("x").value =' ';
+            document.getElementById("y").value =' ';
+            document.getElementById("result").value =' ';
+        }
+    </script>
+</head>
+<body>
+    <!-- 화면구성
+    id: x, y, add, result
+    function calc(){    
+        result클릭하면 x,y값을 읽어옴
+        문자가 포함되어있는지 검사
+        결과를 만듦
+        결과를 result에 출력
+    } -->
+    <label for="x">X: </label>
+    <input id="x" type="text">
+
+    <label for="y">Y: </label>
+    <input id="y" type="text">
+
+    <input id="add" type="button" value="+" onclick="calc();">
+    <input id="clear" type="button" value="c" onclick="clr();">
+
+    <input id="result" type="text" readonly>
+    
+    
+    
+</body>
+</html>

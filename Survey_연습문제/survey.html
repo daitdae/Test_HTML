@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>설문 조사</title>
+    <!-- 1) Code Here : 완성된 CSS와 JavaScript를 이 위치에 지정한다. -->
+    <style>
+        div.content{
+            width: 850;
+            height: auto;
+        }
+        div.absolute{
+            position: absolute;
+            top: 50px;
+            left: 50px;
+        }
+    </style>
+</head>
+<body>
+        <div id="container">
+            <h2 class="title">2018년 국내 공개SW 수요조사</h2>
+            <div class="backimage"><img src="../Survey_연습문제/images/computer.png"> <!-- 2) 주어진 이미지를 이 위치에 삽입한다.--> </div>
+            <form method="POST">
+            <table border="1">
+                <tr>
+                    <th><span>*</span> 이름</th><!-- 3) 이름을 입력받기 위한 입력상자 -->
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <th><span>*</span> 연락처(전화번호)</th>
+                    <td>
+                        <!-- 4) 전화번호 앞자리를 입력받기 위한 select, option -->
+                        <select name="phone">
+                            <option value="010">010</option>
+                            <option value="011">011</option>
+                            <option value="018">018</option>
+                            <option value="017">017</option>
+                            <option value="019">019</option>
+                        </select>
+                        <!-- 5) 전화번호 뒷자리를 입력받기 위한 입력상자-->
+                        <input type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <th><span>*</span> Email </th>
+                    <td>
+                        <input id="email"  type="text" name="email" />
+                    </td>
+                </tr>
+                <tr>
+                        <th><span>*</span> IT 직업군</th>
+                        <td>
+                            <select id="job" name="job">
+                                <!-- 6) value값 지정 -->
+                                <option value="Security Expert">Security Expert</option>
+                                <option value="Network Engineer">Network Engineer</option>
+                                <option value="System Engineer">System Engineer</option>
+                                <option value="DB Administrator">DB Administrator</option>
+                                <option value="Game Programmer">Game Programmer</option>
+                                <option value="System Architector">System Architector</option>
+                                <option value="Application Developer">Application Developer</option>
+                                <option value="System Operator">System Operator</option>
+                            </select>
+                        </td>
+                </tr>            
+                <tr>
+                    <th colspan="2"><span>*</span> Google 서비스 중 가장 많이 사용하는 것은 무엇입니까?</th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input class="service" type="radio" name="service" value="GMail" /> GMail
+                        <input class="service" type="radio" name="service" value="Calendar" /> Calendar
+                        <input class="service" type="radio" name="service" value="주소록" /> 주소록
+                        <input class="service" type="radio" name="service" value="Drive" /> Drive
+                        <input class="service" type="radio" name="service" value="You Tube" /> You Tube
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2"><span>*</span> Google 문서도구 중 그 기능을 좀 더 강화했으면 하는 도구는 무엇입니까?</th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <!-- 7) 기능강화 도구를 선택할 checkbox 입력상자 -->
+                        <input id="word" type="checkbox" name="tool" value="word">
+                        <label for="word">구글 워드프레스</label>
+                        <input id="sps" type="checkbox" name="tool" value="sps">
+                        <label for="sps">구글 스프레드시트</label>
+                        <input id="map" type="checkbox" name="tool" value="map">
+                        <label for="map">구글 지도</label>
+                        <input id="survey" type="checkbox" name="tool" value="survey">
+                        <label for="survey">설문조사</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2"><span>*</span> 기타 남기실 말씀은?</th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <textarea id="etc" class="survey" name="etc"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="btn" colspan="2">
+                        <!-- 8) 제출버튼, 취소버튼 작성 : 제출버튼은 기능이 없어야 한다. -->
+                        <input type="submit" value="제출">
+                        <input type="submit" value="취소">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <div id="result">
+        </div>
+    </div>
+</body>
+</html>

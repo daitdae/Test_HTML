@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            let imgs = ["./images/images1.jpg","./images/images2.jpg","./images/images3.jpg"];  
+            //setInterval, setAttribute 을 써서 그림 순환시키기
+            let i = 1;
+            setInterval(function(){
+                let img = document.getElementById("target"); // 일단 변수 하나주고 가져와서 저장시킨다 끝태그 없어서 innerhtml 안됨
+                img.setAttribute("src",imgs[i++]); //src의 값을 바꿔치기 할거다 i값이 1인데 점점 증가시켜나갈거다
+                if(i>2) i=0; //i값이 2가 넘어가면 다시 0으로 돌아가라 그림이 3장이니깐 2이상이면 0으로 다시
+            },1000)
+          
+        }
+    </script>
+</head>
+<body>
+    <h2>이미지 처리</h2>
+    <p>
+        <img src="./images/images1.jpg" id="target">
+    </p>
+    
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[id 중복확인]</title>
+    <script>
+        function inputId(){
+            // 현재페이지의 id가 "id"인 입력란의 값을
+            // 바깥쪽 창의 id가 "memberid"인 입력란에 넣는다
+            // 현재창을 닫는다.
+            opener.document.getElementById("memberid").value = document.getElementById("id").value
+            this.close();
+        }
+    </script>
+</head>
+
+<body>
+     <!-- <form th:action="${searchID}" method="post"> 
+        액션 값으로 모델에서 끄낸거 이름 넣으면 안됨 url로 해야함  -->
+    <form th:action="@{/member/idcheck}" method="post">
+        검색할 아이디: <input type="text" name="id" id="id" th:value="${searchID}"> <!--이부분 조심 String id니깐 id-->
+                       <input type="submit" value="검색">
+    </form>
+    
+    <!-- 이것도 됌 
+    <div>
+        검색 결과: <span th:if="${result == true}">사용 할 수 없습니다</span>
+                   <span th:if="${result == false}">사용 할 수 있습니다</span>
+    </div> -->
+
+    <!-- 검색후 searchID가 널이 아닐때 -->
+    <div th:if="${searchID != null}"></div>
+
+    <!-- 사용불가능 result가 true일때 -->
+    <div th:if="${result == true}">
+    <!-- <div th:if="{result}">  -->
+    <!-- 위에게 되려면 위의 null부분 div태그를 닫으면 안되고 맨 마지막
+         밑에서 닫아야함 이유는 null이 아니면 싹 내려오게 해야함 (헷갈리니깐 그냥 쓰던거 쓰자)-->
+        <p>사용불가능한 ID입니다.</p>
+    </div>
+
+    <!-- 사용가능 result가 false일때 -->
+    <div th:if="${result == false}">
+    <!-- <div th:if="{not result}"> -->
+        <p>사용가능한 ID입니다.</p>
+        <p><input type="button" value="ID 사용하기" onclick="inputId()"></p>
+    </div>
+</body>
+</html>

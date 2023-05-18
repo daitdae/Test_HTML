@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>float</title>
+    <style>
+        /*테투리를 없애고 높이 조정, 호버시 배경색 변경 글자가 box의 중앙에 위치하도록 div는 없앤다*/
+        *{              /*옆에 빈거 없애는 코드*/
+            padding: 0;
+            margin: 0;
+        }
+        ul{     /*li 전체폭+border=200px*5(개)+(2*5)*/
+            width: 1300px;
+            height: auto;
+            margin: 0 auto;/*시계방향으로 돌아감 두개만쓰면 위아래 하나만 주면 전부 다*/
+            
+        }
+        li{   
+            width: 20%;
+            height: 60px;
+            list-style-type: none;
+            background: violet;
+            float: left;
+            text-align: center;
+            padding-top: 30px;
+            /*line-height: 100px;*/ 
+        }
+        li:hover{
+            background: greenyellow;
+        }
+        
+    </style>
+</head>
+<body>
+    <ul>
+        <li>회사소개</li>
+        <li>도서</li>
+        <li>자료실</li>
+        <li>질문답변</li>
+        <li>동영상강의</li>
+    </ul>
+</body>
+</html>

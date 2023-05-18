@@ -1,0 +1,37 @@
+<!--09월 23일 문서의 구조 이해-->
+
+<!--현재 문서의 버젼이 html5임을 명시-->
+<!DOCTYPE html>
+
+<!--문서의 시작을 알림--
+    lang : 문서에서 사용하는 언어 명시, 브라우저에게 정보를 제공, 번역 기능과 관련이 있다.-->
+<html lang="ko">
+    <head>
+        <!--문서의 제목 표시-->
+        <title>웹 문서의 구조 이해</title>
+
+        <!--문자 체계가 한글 + 영어 등을 사용한다. 거의 utf-8사용-->
+        <meta charset="UTF-8">
+
+        <!--어떤 랜더링 엔진을 사용할 것인지를 전달, 위의 독타입이 있어야 이퀴브가 의미가 있음-->
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+
+        <!--웹문서내용의 스타일을 지정-->
+        <style> </style>
+
+        <!--스타일의 내용을 분리해서 파일로 지정한 후 사용 href안에 파일명 지정 확장자명은 css :경로(path) -->
+        <link rel="stylesheet" href="파일명.css">
+
+        <!--웹 문서에 적용할 스크립트를 지정-->
+        <script></script>
+
+        <!--스크립트의 내용을 분리해서 파일로 지정한 후 사용 확장자명은 js-->
+        <script src="파일명.js"></script>
+    </head>
+    <body>
+        <!--브라우저에 보여질 내용을 기록-->
+        <h1>Hello World</h1>
+
+    </body>
+
+</html>

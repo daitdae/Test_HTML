@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jsontext</title>
+    <script>
+        window.onload = function(){
+            let data = {usrid : '123', usrname: '홍길동', height: 176.5, weight: 78.9};
+            // 중괄호나 대괄호로 되있으면 object로 인식한다 객체일때만 데이터 뽑아낼수 있다 
+            // 문자열에선 데이터를뽑아낼수 있는 방법이 없다. 
+            // 서버에서 데이터가 왔을때 데이터 타입을 알아야함
+            // 문자열로 되있는 데이터를 오브젝트로 파싱 해줘야함
+            // 에러났던이유 키가 큰따옴표로 되어있지 않아서 오류남
+            //{"usrid":'hong'} 이런식으로 되있었어야 가능했음 이게json
+            //{usrid:'hong'} 이건 json아님
+            data = JSON.stringify(data);    //object를 json의 문자열로 바꿔라 (json형태의 문자열로 변환) Object-->String
+
+            data = JSON.parse(data);    //String-->JSON (문자열을 json으로)
+            console.log(data);
+           
+
+            let target = document.querySelector("h2#target");
+            let tag = '';
+            let usrid = data['usrid'];
+            let usrname = data['usrname'];
+            let height = data['height'];
+            let weight = data['weight'];
+            let bmi = weight/((height*0.01)*2);
+
+            tag+=`아이디 : ${usrid} <br>`;
+            tag+=`이  름 : ${usrname} <br>`;
+            tag+=`  키   : ${height} <br>`;
+            tag+=`몸무게 : ${weight} <br>`;
+            tag+=` BMI   : ${bmi} <br>`;
+
+            target.innerHTML = tag;
+            alert("확인하면 이동함");
+            location.href = "http://naver.com"
+        }
+    </script>
+</head>
+<body>
+    <h2 id="target"></h2>
+</body>
+</html>

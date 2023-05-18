@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS와 자바스크립트</title>
+
+    <!-- 문법은 있으나 로직이 없음 --> <!--위에서 부터 밑으로색이 덧씌워짐 -->
+    <!--*이면 전체 선택된거 바꿀수있는데 쓰지마라-->
+    <style> 
+        body {background-color: #a0c90bef;}
+        p {color: blueviolet;}
+        p#temp1 {color: brown;} 
+        p.temp_cls {color: red;} 
+    </style>
+
+    <!-- 문법(로직)이 있음 v8엔진이 해석기-->
+    <script>
+        window.onload = function(){
+            let data = document.getElementById("temp1").innerHTML;
+            alert(data); //^^
+        }
+    </script>
+</head>
+<body>
+    <div class="main">
+        <p id="temp1" class="temp_cls"> 동해물과백두산이 마르고 닳도록</p>
+        <p class="temp_cls"> 하느님이 보우하사</p>
+        <p>우리나라만세</p>
+        <p class="temp_cls"> 무궁화삼천리 화려강산</p>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테이블(표)의 작성</title>
+    <style>
+        table {
+            border : 1px solid #555555; /*세미콜론은 마침표의 의미 반드시 찍어줘야함*/
+            border-collapse: collapse; /*separate:기본값, collapse: 테두리병합*/
+        }
+        table thead {
+            background-color: #f87890;
+        }
+        table th, table td{
+            border : 1px solid #eee;
+            padding : 10px /* 셀(text컨텐츠)과 테두리 사이 여백*/
+        }
+    </style>
+</head>
+<body>
+    <h2>테이블의 작성</h2>
+    <P>
+        1) 열(column) : 세로줄<br>
+        2) 행(row) : 가로줄<br>
+        3) 셀(cell) : 실제 데이터가 들어가는 부분
+    </P>
+    <table border="1"><!--border 속성보다 CSS로 처리하는것을 권장-->
+        <caption>3학년 2반 성적</caption><!--캡션생략 가능-->
+        <thead><!--제목표시-->
+            <tr>
+                <th>이름</th>
+                <th>국어</th>
+                <th>영어</th>
+            </tr>
+        </thead>
+
+        <tbody><!--본문표시-->
+            <tr>
+                <td>홍길동</td> <!--td데이터는 왼쪽부터 정렬-->
+                <td>89</td>
+                <td>87</td>
+            </tr>
+
+            <tr>
+                <td>임꺽정</td>
+                <td>89</td>
+                <td>87</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+    <table>
+       <caption>표의 셀 합치기</caption> 
+       <tr>
+         <th>제목1</th>
+         <th>제목2</th>
+         <th>제목3</th>
+         <th>제목4</th>
+       </tr>
+       <!--셀합칠때 : rowspan= 몇칸, colspan= 몇줄-->
+       <tr>
+        <td colspan="3">데이터1</td>
+        <td>데이터2</td>
+       </tr>
+
+       <tr>
+        <td rowspan="2">데이터3</td>
+        <td>데이터4</td>
+        <td>데이터5</td>
+        <td>데이터6</td>
+       </tr>
+
+       <tr>
+        <td>데이터7</td>
+        <td>데이터8</td>
+        <td>데이터9</td>
+       </tr>
+
+    </table>
+</body>
+</html>

@@ -1,0 +1,25 @@
+divsion : 영역분할
+1) block
+    - div (많이 쓰임)
+    - sementic tag (div너무 많이쓰여서 만들어짐)
+      : footer, header, nav, section, article
+
+2) inline
+    - span (많이 쓰임)
+
+** form tag 
+    사용자에게 데이터를 입력받아서 서버에 보내주는 역할
+    enctype: 글자가 아닌걸 보낼 때 (enctype쓸땐 전송방식이 무조건)
+    - Get/Post 방식이 있음(더 있는데 우린안배움)
+      Get: 아무데이터나
+      Post: 비번같은거, 사이즈 제한없음
+    - 사용자에게 입력받을 거면 value 쓰지 말아라  
+
+<form action="누구에게" method="전송방식" enctype="multipart/form-data">
+    <input type=" "(필)   name="변수명(서버에서 받을)"(필)   value="(어떤 변수에 어떤값을 보낸다는 명령어)"
+     readonly="readonly"(읽기만 하게 readonly readonly같으면 뒤에 readonly생략 가능)
+     placeholder="안내문"
+
+</form>
+<!--  !하고 엔터치면 기본포멧 완성됨-->
+주석 단축키 :  ctrl+k u

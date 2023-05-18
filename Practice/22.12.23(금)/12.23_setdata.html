@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>set data practice</title>
+    <script>
+        window.onclick = function(){
+            let btn = document.getElementById("btn");
+            btn.onclick = function(){
+                document.getElementById("header").innerHTML = "값을바꿉니다.";
+                document.getElementById("usrname").value = "손오공";
+                
+                let img = "https://dimg.donga.com/wps/NEWS/IMAGE/2022/01/28/111500268.2.jpg";
+                document.getElementById("cat").setAttribute("src", img);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2 id="header">이것은 h2</h2>
+    <input id="usrname" type="text" placeholder="이름을 입력"><br>
+    <img id="cat" src="http://www.chemicalnews.co.kr/news/photo/202106/3636_10174_4958.jpg"><br>
+    <br>
+    <input id="btn" type="button" value="Click">
+</body>
+</html>

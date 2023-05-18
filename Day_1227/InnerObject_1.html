@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내장객체 사용하기</title>
+    <script>
+        window.onload = inner;  //function대신 이름을 붙여준거임 그래서 밑에 function이 필요함
+        function inner(){
+            let target = document.getElementById("sample");
+
+            let today = new Date();//date안에서 year month day 뽑아옴
+
+            let year = today.getFullYear();     //메소드일때 괄호를 여는거임
+            let month = today.getMonth() + 1;   //month는 0월 1월 2월 이런식으로 가져온다 그래서 위에 +1해줘야한다
+            let day = today.getDate();
+            let hour = today.getHours();
+            let minute = today.getMinutes();
+            let second = today.getSeconds();
+
+            //2022년 12월 27일
+            let data = `${year}년 ${month}월 ${day}일 ${hour}:${minute}:${second}`; //백틱  ${}= 괄호 안의 값으로 대체하라는 뜻
+            target.innerHTML = data;
+
+            //target.innerHTML = today; //그냥 날짜 나옴
+            
+        }
+    </script>
+</head>
+<body>
+    <div id="sample"></div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>math object</title>
+    <script>
+        window.onload = function(){
+            let target = document.getElementById("target");
+
+            let num = 2.5234;
+
+            let maxNum = Math.max(1,2,3,4,5);
+            let minmin = Math.min(1,2,3,4,5);
+            let round = Math.round(num);
+            let floor = Math.floor(num);
+            let ceil = Math.ceil(num);
+            let rnd = Math.random();
+            let pi = Math.PI;
+
+
+            let data = `최대값: ${maxNum} <br>`;
+            data += `최소값: ${minmin} <br>`;
+            data += `소수첫째반올림: ${round} <br>`;
+            data += `소수첫째내림: ${floor} <br>`;
+            data += `소수첫째올림: ${ceil} <br>`;
+            data += `0~1사이 난수: ${rnd} <br>`;
+            data += `원주율상수반환: ${pi}`;
+
+            target.innerHTML = data;
+        }
+    </script>
+</head>
+<body>
+    <h2 id="target"></h2>
+</body>
+</html>

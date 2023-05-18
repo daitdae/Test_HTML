@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <title>타이틀</title>
+        <style>
+         @import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
+         *{
+            font-family: 'Dongle', sans-serif;
+            font-size: 25px;
+          }
+        </style>
+    </head>
+    <body>
+        <div class = "wrapper">
+            <ul>    <!--li*숫자 하면 만들 li리스트가 입력한 수만큼 나옴-->
+                <li>서초구</li>
+                <li>강남구</li>
+                <li>용산구</li>
+                <li>동작구</li>
+                <li>양천구</li>
+            </ul>    
+        </div>
+        <br>
+        <!--테이블 만드는 명령어는 한줄씩 쓰고 밑으로 내려가진다-->
+        <hr>
+        <table border="1">
+            <caption>성적표</caption>
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>이름</th>
+                    <th>JAVA</th>
+                    <th>일본어</th>
+                    <th>Basic</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>홍길동</td>
+                    <td>10</td>
+                    <td>10</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>임꺽정</td>
+                    <td>20</td>
+                    <td>20</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>손오공</td>
+                    <td>30</td>
+                    <td>30</td>
+                    <td>30</td>
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="2">합계</td>
+                <td>30</td>
+                <td>60</td>
+                <td>90</td>
+               </tr>
+            </tfoot>
+     </table>
+     <hr>  
+     <!--목록으로 나타나도록 할것<ul></ul>
+     google로 이동(현재창)
+     유튜브로 이동(새창)
+     네이버웹툰 첫페이지로 이동(새창)1-->
+     <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere aliquid quo atque esse, quas, 
+        et quisquam commodi rerum neque ipsam at vero.
+         Repudiandae iste temporibus quod dolores officia fuga itaque. </p>
+
+      
+     <ul> <!-- li*갯수>a : 이렇게 하면 a href까지 포함해서 자동으로 만들어줌-->
+        <li>
+            <a href="https://www.google.com">구글</a>
+        </li>
+        <li>
+            <a href="https://www.youtube.com" target="_blank">유튜브</a>
+        </li>
+        <li>
+            <a href="https://comic.naver.com/index" target="web">네이버웹툰</a> <!--웹이라는 이름의 창을 생성하고 거기에 새로 연다-->
+        </li>
+        <li>
+            <a href="https://daum.net/" target="web">다음</a> <!--위에 웹이라는 이름의 창이 있어서 거기에 그냥 열어버린다-->
+        </li>
+     </ul>
+     
+
+    </body>
+
+</html>

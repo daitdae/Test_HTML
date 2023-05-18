@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form 관련태그</title>
+</head>
+<body>
+    <!--오늘배우는 태그 중요함--> <!--form태그 가장 중요--><!-- &lt;는 < , &gt;는 > &quot;는 " -->
+    <h2>Form : 사용자로부터 정보를 입력받기 위한 태그</h2>
+    <p>
+        Form 요소들은 사용자가 데이터를 입력 할 수 있는 요소들의 집합<br>
+        대부분의 Form 요소들은 인라인 요소들이다.<br>
+        &lt;form action=&quot;서버프로그램의 URL&quot; method=&quot;전송방식&quot;&gt;
+    </p>
+    <h3>GET 방식</h3> <!--암기해야함-->
+    <ul>
+        <li>get방식은 주소표시줄에 데이터가 노출==> 노출되면 안되는 정보는 GET을 쓰면 안된다</li>
+        <li>글자수가 제한 : 2048</li>
+    </ul>
+
+    <h3>POST방식</h3> <!--암기해야함-->
+    <ul>
+        <li>POST방식은 데이터가 패킷의 body에 첨부되어 전송</li>
+        <li>글자수가 제한없음</li>
+        <li>파일이 전송되어야 하는 경우 POST방식을 사용하면서!
+            form 태그의 옵션 중 enctype="multipart/form-data" 사용해야한다</li>
+    </ul>
+
+    <hr> 
+    <form name="sign in" action="" method="GET">
+        <!--form name 브라우저한테 이게 뭔지 알려주는거 굳이 없어도 됨-->
+       
+        <label for="usrname">이름 : </label>
+        <input id="usrname" type="text" name="user name" placeholder="이름입력(10자이내)" maxlength="10" required>
+        <!--한줄 글상자(input type), 타입이 텍스트라는게 중요 -->
+        <!--label for와 input id 한쌍, 같은이름 써야함 그래야 인식함-->
+        <!--input name은 서버에 보내는거-->
+        <!--place holer = 입력칸안에 표시되는 말-->
+        <!--maxlength = 최대 입력 가능 글자 수-->
+        <!--required(텍스트박스에 입력하는것)는 필수 입력-->
+        <!--순서는 상관 ㄴㄴ-->
+        <br>
+
+        <label for="usrpsd">비밀번호 :</label>
+        <input id="usrpsd" type="password" name="password" placeholder="비밀번호(10자)" maxlength="10" required>
+        <!--패스워드 타입은 password-->
+
+        <span style="color:red; font-size:0.8em;">※비밀번호는 영문자 대소문자,특수문자 포함 10자이내로</span>
+        <br>
+
+        <label for="usrid">ID :</label>
+        <input id="usrid" type="text" name="userid" placeholder="ID입력" maxlength="12">
+        <br>
+        <!-- /label 굳이 마지막에 안써도 상관없음-->
+
+        <label for="location"> 지역 : 
+            <input type="radio" name="location" value="부산"> 부산
+            <input type="radio" name="location" value="서울" checked> 서울
+            <input type="radio" name="location" value="인천"> 인천
+            <input type="radio" name="location" value="대전"> 대전
+            <input type="radio" name="location" value="제주"> 제주
+        </label>
+        <!--전송되는데이터는 value값이 전송된다-->
+        <!--input type radio는 고르는거--> <!--name은 그룹값 다르게 했을경우 다 선택가능-->
+        <!--checked는 required랑 같은 기능 선택하는거엔 checked 씀, 처음에 선택되어져있음-->
+        <br>
+
+        <!--example-->
+        <label for="gender"> 성별 :
+            <input type="radio" name="gender" value="남성" checked> 남성
+            <input type="radio" name="gender" value="여성"> 여성
+        </label>
+        <br>
+
+        <!--체크상자만드는 법 checkbox 기본적으로 radio와 같음-->
+        <label for="hobby"> 취미 : 
+            <input type="checkbox" name="hobby" value="자전거" checked> 자전거타기
+            <input type="checkbox" name="hobby" value="등산"> 등산
+            <input type="checkbox" name="hobby" value="독서"> 독서
+            <input type="checkbox" name="hobby" value="헬스"> 헬스
+            <input type="checkbox" name="hobby" value="드라이브"> 드라이브
+        </label>
+        <br>
+
+        <!--관심분야 : interest -->
+        <label for="interest"> 관심분야: 
+            <input type="checkbox" name="interest" value="주식"> 주식
+            <input type="checkbox" name="interest" value="재테크"> 재테크
+            <input type="checkbox" name="interest" value="부동산"> 부동산
+            <input type="checkbox" name="interest" value="운동"> 운동
+            <input type="checkbox" name="interest" value="건강"> 건강
+        </label>
+        <br>
+
+        
+        <input type="submit" value="가입">
+        <!--submit 버튼 submit 버튼누르면 전송됨 주소창에 표시됨, value는 submit 안에 들어갈 말 -->
+        <input type="reset" value="취소">
+        <!--type reset 입력한거 전체 삭제됨-->
+        <input type="button" value="버튼">
+        <!--버튼은 모양만 있음 아무동작이 없음-->
+        <br>
+
+        <label for="ID"> ID: </label>
+        <input type="color">
+        <br>
+
+        <label for="num"> 숫자: </label>
+        <input type="number">
+        <br>
+
+        <label for="date"> 날짜: </label>
+        <input type="date">
+        <br>
+
+        <label for="picture">사진 : </label>
+        <input id="picture" type="file" name="picture">
+
+    </form>
+    <hr>
+    <form name="signin" action="" method="POST"></form>
+
+   
+
+    <form name="validate" action="" method="POST" enctype="multipart/form-data">
+        <label for="picture">사진 : </label>
+        <input id="picture" type="file" name="picture">
+
+    </form>
+    
+</body>
+</html>

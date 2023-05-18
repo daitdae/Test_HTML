@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tag 정보(영역분할태그)</title>
+</head>
+<body>
+    <div class="content"> <!--컨텐트는 전체를 말함-->
+
+        <h2>영역 분할 태그</h2>
+        <p> viewport(기기들에 따라 어떻게 보이는지 결정)
+            브라우저 안에서 공통의 목적을 가지고 요소들을 집합해서 
+            다른 요소들과 구분해서 사용하기 위한 목적
+        </p>
+    
+        <div class="block">
+            <h4>블럭 요소를 이용한 분할</h4>
+            <b>div 태그</b>
+            <fieldset> <!--구역을 감싸주는 네모 만든다-->
+                <legend>블럭요소의 특징</legend>
+                <ul>
+                    <li>border속성이 있다.(border)</li>
+                    <li>폭과 높이를 적용할 수 있다(예외:img)</li>
+                    <li>padding과 margin 적용할수있다.</li>
+                    <li>종류 : hn, p, div, ul, il, ol, dd, dt, dl ...</li>
+                </ul>
+            </fieldset>
+        </div><!--block end-->
+
+        <div class="inline">
+            <h4>인라인요소를 이용한 분할</h4>
+            <b>span 태그</b>
+            <fieldset>
+                <legend>인라인요소의 특징</legend> <!--legend 제목부분이 네모칸 사이에 표시-->
+                <ul>
+                    <li>옆으로 쌓인다.</li>
+                    <li>경계가 없다. 경계를 만드려면 <span>한국</span><span>서울</span> 이런식으로 만든다</li>
+                    <li>padding과 margin 적용 할 수 없다.</li>
+                    <li>종류 : b, s, u, i, i, span, img...</li>
+                </ul>
+            </fieldset>
+        </div> <!--inline end-->
+    </div> <!--.content의 끝-->
+</body>
+</html>

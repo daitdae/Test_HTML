@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>설문 조사</title>
+    <link rel="stylesheet" href="style/style.css" />
+    <script src="script/survey.js"></script>
+</head>
+<body>
+        <div id="container">
+            <h2 class="title">2018년 국내 공개SW 수요조사</h2>
+            <div class="backimage"><img src="images/computer.png" /></div>
+            <form method="POST">
+            <table border="1">
+                <tr>
+                    <th><span>*</span> 이름</th>
+                    <td><input id="name" class="survey" type="text" name="name" /></td>
+                </tr>
+                <tr>
+                    <th><span>*</span> 연락처(전화번호)</th>
+                    <td>
+                        <select id="phone1" name="phone1" class="survey">
+                            <option value="010">010</option>
+                            <option value="019">019</option>
+                            <option value="018">018</option>
+                            <option value="017">017</option>
+                        </select>
+                        <input id="phone2" class="survey" type="text" name="phone2" placeholder="- 제외하고 숫자만 입력해 주세요."/>
+                    </td>
+                </tr>
+                <tr>
+                    <th><span>*</span> Email </th>
+                    <td>
+                        <input id="email" class="survey" type="text" name="email" />
+                    </td>
+                </tr>
+                <tr>
+                        <th><span>*</span> IT 직업군</th>
+                        <td>
+                            <select id="job" class="survey" name="job">
+                                <option value="Security Expert">Security Expert</option>
+                                <option value="Network Engineer">Network Engineer</option>
+                                <option value="System Engineer">System Engineer</option>
+                                <option value="DB Administrator">DB Administrator</option>
+                                <option value="Game Programmer">Game Programmer</option>
+                                <option value="System Architector">System Architector</option>
+                                <option value="Application Developer">Application Developer</option>
+                                <option value="System Operator">System Operator</option>
+                            </select>
+                        </td>
+                </tr>            
+                <tr>
+                    <th colspan="2"><span>*</span> Google 서비스 중 가장 많이 사용하는 것은 무엇입니까?</th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input class="service" type="radio" name="service" value="GMail" /> GMail
+                        <input class="service" type="radio" name="service" value="Calendar" checked/> Calendar
+                        <input class="service" type="radio" name="service" value="주소록" /> 주소록
+                        <input class="service" type="radio" name="service" value="Drive" /> Drive
+                        <input class="service" type="radio" name="service" value="You Tube" /> You Tube
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2"><span>*</span> Google 문서도구 중 그 기능을 좀 더 강화했으면 하는 도구는 무엇입니까?</th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input class="tool" type="checkbox" name="tool" value="구글 워드프레스" checked/>구글 워드프레스
+                        <input class="tool" type="checkbox" name="tool" value="구글 스프레드시트" />구글 스프레드시트
+                        <input class="tool" type="checkbox" name="tool" value="구글 지도" />구글 지도
+                        <input class="tool" type="checkbox" name="tool" value="설문조사" />설문조사
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2"><span>*</span> 기타 남기실 말씀은?</th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <textarea id="etc" class="survey" name="etc"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="btn" colspan="2">
+                        <input id="btn" type="button" value="제출" /> <input type="reset" value="취소" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <div id="result">
+        </div>
+    </div>
+</body>
+</html>

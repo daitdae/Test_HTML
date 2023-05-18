@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form 연습</title>
+    <style>
+        textarea#txt {
+            resize: none;                
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="get">
+        <label for="usrid">아이디 : </label>
+        <input id="usrid" type="text" name="id" value="hong" placeholder="5~10자리 아이디" disabled> <br>
+        <!-- id="usrid" 는 위에거랑 짝이라는걸 알려주는 명령어-->
+        <!-- disabled는 아얘 전송이 안된다 null값들어가짐 주소창보면서 확인(?뒷부분)-->
+
+        <label for="password">비밀번호 : </label>
+        <input id ="password" type="password" name="pwd" placeholder="5~10자리 아이디">  <br>
+
+        <label for="yourcolor">좋아하는색: </label>
+        <input id = "yourcolor" type="color" name="yourcolor" placeholder="5~10자리 아이디"><br>
+
+        <label for="date"> 생년월일: </label>
+        <input id = "birthdate" type="date" name="birthate" placeholder="5~10자리 아이디"><br>
+
+        <label for="email"> 이메일:   </label>
+        <input id = "email" type="email" name="email" placeholder="5~10자리 아이디"><br>
+
+        <label for="text"> 텍스트:   </label>
+        <input id = "text" type="text" name="text" placeholder="5~10자리 아이디"><br>
+
+        <label for="password"> 비밀번호:   </label>
+        <input id ="password" type="password" name="pwd" placeholder="5~10자리 아이디">  <br>
+
+        <label for="tel"> 전화번호: </label>
+        <input id = "tel" type="tel" name="phone" placeholder="5~10자리 아이디"><br>
+
+        <label for="time"> 시간:   </label>
+        <input id = "time" type="time" name="time" placeholder="5~10자리 아이디"><br>
+
+        <label for="url"> 블로그주소:  </label>
+        <input id = "url" type="url" name="blog" placeholder="5~10자리 아이디">
+
+        <hr>
+          
+        <form action="" method="post" enctype="multipart/form-data"> <!--원래는 맨위에 있어야함-->
+
+        <label> 당신의 성별은 ?             <!-- 한묶음은 네임 같은거 넣어야함-->
+        <input type="radio" name="gender" value="여자" checked> 여자 
+        <input type="radio" name="gender" value="남자"> 남자
+        </label> 
+        <br>
+
+        <label> <!--여러개 가능 그래서 java에서 받을때는 배열이나 문자열로 받아야한다-->
+        <input type="checkbox" name="path" value="신문"> 신문
+        <input type="checkbox" name="path" value="유튜브" checked> 유튜브
+        <input type="checkbox" name="path" value="블로그"> 블로그
+        <input type="checkbox" name="path" value="광고"> 광고
+        </label>
+
+        <br><br>
+
+        <select name="location">
+            <optgroup label="강남쪽"> 강남쪽
+            <option>강남구</option>
+            <option value="seocho">서초구</option> <!--화면에 보여지는 값과 전송되는 값이 달라야할때 쓰이는 코드-->
+            <option>강서구</option>
+            </optgroup>
+
+            <option>양천구</option>
+            <option>강동구</option>
+        </select>
+        <br><br>
+
+        <input type="hidden" name="data" value="hidden값">
+        <!-- hidden엔 label 같은거 있음 안됨 -->
+
+        <label> 사진등록: 
+        <input type="file" name="pic">
+        </label> <br>
+        <!-- method="post" enctype="multipart/form-data" 파일이나 사진등록시에는 반드시 메소드바꿔주고 
+        enctype="multipart/form-data 넣어줘야한다-->
+        
+        <textarea id="txt" class="" name="temp" rows="10" cols="50" style="resize: none;"></textarea>
+        <!--textarea 붙이지 않으면 공백이 들어가는데 이것까지 전송이 된다-->
+        <!--사이즈 조절은 안에서 스타일 주던가 안에서 주면 수정이 어려워 추천안함 맨 위에서 스타일 준다-->
+        <br> <!-- id="" class="" 이런건 글로벌속성으로 막갖다가 넣을수 있다 단 id는 유일해야함-->
+
+        <input type="submit" value="전송"> <!--전송버튼 만들어주는 거-->
+        <input type="reset" value="삭제">
+        
+    </form>
+    
+</body>
+</html>

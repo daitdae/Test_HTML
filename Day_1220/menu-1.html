@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bullet</title>
+    <style>
+        /* li{
+            display: inline;    inline으로 하면 옆으로 나옴 폭, 높이 무시
+            display: inline-block; ul타입의 공백과 li공백은 가지고 있음
+            display: none;   아얘 없어진것처럼 화면상에서 사라짐 공간도 사라짐. 밑에 다른게 있으면 그걸 위로 올림
+            visibility: hidden; 화면에 안보이는건 같은데 공간은 차지하고 있음 
+        } */
+        li{            
+            border: 1px solid greenyellow; /*이게 칸만드는 코드 밑에건 다 크기세팅 용*/         
+            padding-top: 12px;
+            list-style-type: none;  
+            width: 100px;   /*보더 1px씩 들어갔기때문에 확인해보면 102*/
+            height: 40px;   /*보더 1px씩 에 패딩 12해서 54*/
+            text-align: center;
+        }
+        li:hover{
+            background: salmon;
+            cursor: pointer;
+        }
+        /*h2.data{display: none;}*/
+        /*h2#data{display: none;}*/
+        h2{
+            display: none;
+        }
+    </style>
+    <script>    //스크립트를 쓰면 자바스크립트라고 인식
+        //alert("stop"); //문서끝까지 가지도 못하고 경고창 출력(랜더링 못함)
+        //1 위치 html요소에 접근 불가능
+        window.onload = function(){ //바디보다 자바스크립트 코드가 위에 있을땐 이 코드 반드시 써야한다. 
+        //경고창이있어도 일단 끝까지 가라는 뜻(그냥 암기) html문서 끝까지 진행하고 나서 함수를 실행하시오
+            //alert("stop"); //문서 끝까지 일단 갔다와서 경고창 출력 단 엔진 속도차이때문에 안보일수도 있음
+            //2 위치 html요소에 접근 가능 왜냐 일단문서끝까지 갔다왔기 때문
+            let temp = "문자열";
+            console.log(temp);                  //콘솔에다가 출력하는 코드
+            console.log(typeof(temp));
+
+            let temp2 = document.getElementById("intro"); //이벤트소스(이벤트를 발생시킴)
+            // temp2.onclick = function(){      //클릭했을때 액션
+            //     alert("Did you click?");
+            // }
+            temp2.onmouseover = function(){     //가져다 댔을때 액션
+               //console.log("Did you touch?");
+               let data = document.getElementById("data");
+               console.log(typeof(data.style.display));
+               data.style.display = "block";
+            }
+            temp2.onmouseout = function(){      //뗏을때 액션
+                let data = document.getElementById("data");
+                data.style.display = "none";
+                //console.log("bye~");
+            }
+            console.log(temp2);
+            console.log(typeof(temp2));
+
+            let temp3 = document.getElementById("intro2");
+            temp3.onmouseover = function(){
+                let book = document.getElementById("book");
+                book.style.display = "block";
+            }
+            temp3.onmouseout = function(){
+                let book = document.getElementById("book");
+                book.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+        <ul>
+            <li id="intro">회사소개</li>
+            <li id="intro2">도서</li>
+            <li>자료실</li>
+            <li>질문답변</li>
+            <li>동영상강의</li>
+        </ul>
+    <hr>
+
+    <h2 id="data">Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+        Cupiditate voluptatum ut sequi officiis blanditiis aspernatur beatae? 
+        Animi ipsa cupiditate ab, ratione quidem temporibus sunt minus minima aspernatur deserunt a aliquid?</h2>
+
+    <h2 id="book">Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+        Cupiditate voluptatum ut sequi officiis blanditiis aspernatur beatae? 
+        Animi ipsa cupiditate ab, ratione quidem temporibus sunt minus minima aspernatur deserunt a aliquid?</h2>
+</body>
+</html>

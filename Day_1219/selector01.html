@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>복합 선택자 연습</title>
+    <style>
+        div div {   /*div안에 div*/
+            background: #fc6aad; color: blue;
+        }
+        div p{  /*한칸띄어쓰기는 이름(여기선 <p>)들어가있는거 다 선택*/
+            background: yellow; color: blue;
+        }
+        div > div {/* >는 딱 자식만*/
+            background:#fc6aad; color: blue;
+        }
+        div > p{
+            background: yellow; color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p>p태그입니다.-1</p>
+        <div>
+            <ul>
+                <li><p>p태그입니다.-2</p></li>
+            </ul>
+        </div>
+    </div>
+    
+</body>
+</html>

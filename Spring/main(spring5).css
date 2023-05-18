@@ -1,0 +1,142 @@
+header{
+    margin: auto;
+    text-align: center;
+}
+
+section{
+    margin: auto;
+    text-align: center;
+}
+
+a:link{
+    color: black;
+    text-decoration: none;
+}
+
+a:visited{
+    color: black;
+    text-decoration: none;
+}
+
+a:hover{
+    color: red;
+    text-decoration: underline;
+}
+
+/* image */
+img{
+    vertical-align: middle;
+}
+
+/* 게시판 관련 */
+textarea{
+    width: 400px;
+    height: 200px;
+    resize: none;
+}
+
+table{
+    margin: auto;
+}
+
+tr.hover{
+    background-color: lightgray;
+}
+
+th{
+    width: 100px;
+    height: 30px;
+    background-color: lightblue;
+    font-weight: bold;
+    text-align: left;
+    padding-left: 10px;
+}
+
+td{
+    padding: 3px;
+    background-color: lightgray;
+    text-align: left;
+}
+
+td.white{
+    background-color: lightslategray;
+}
+
+td.head{
+    background-color: lightslategray;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* 게시판 가운데 정렬 열 */
+.center{
+    text-align: center;
+}
+
+/* 게시판본문 */
+pre{
+    font-size: 12px;
+}
+
+/* 게시판하단 */
+#navigator{
+    width: 600px;
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+}
+
+/* 리플 폼 영역 */
+#replyForm{
+    width: 600px;
+    height: 50px;
+    text-align: center;
+}
+
+/* 리플 목록 출력표 */
+table.reply{
+    border-style: none;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+td.replyid{
+    width: 100px;
+    padding-left: 10px;
+    border-style: none;
+    background-color: lightblue;
+    font-weight: bold;
+}
+
+td.replytext{
+    width: 500px;
+    border-style: none;
+    background-color: lightgray;
+}
+
+td.replydate{
+    width: 70px;
+    border-style: none;
+    background-color: lightgray;
+    font-size: 10px;
+    text-align: center;
+}
+
+td.replybutton{
+    width: 70px;
+    border-style: none;
+    background-color: lightgray;
+    font-size: 10px;
+    text-align: center;
+}
+
+.errorMSG{
+    color: red;
+    font-size: 12px;
+    background-color: lightslategray;
+}
+
+form{
+    text-align: center;
+    font-size: 12px;
+}

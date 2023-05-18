@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>게시판</title>
+        <script th:src="@{/js/boardTest.js}"></script>
+        <link rel="stylesheet" href="board_list.css">
+    </head>
+    <body>
+        <section class="notice">
+            <div class="page-title">
+                <div class="container">
+                    <h3>[ 게시판 ]</h3>
+                </div>
+            </div>
+            <!-- 자바스크립트로 action변경 가능 element 속성값 변경 후 submit() 하는 식으로 -->
+            <form th:action="@{/board/list}" id="pagingForm" method="get">
+                <!-- board seach area -->
+                <div id="board-search">
+                    <div class="container">
+                        <div class="search-window">   
+                            <div class="search-wrap">
+                                <select name="search" id="type">
+                                    <option value="all" th:selected="${search} == 'all'">전체</option>
+                                    <option value="title" th:selected="${search} == 'title'">제목</option>
+                                    <option value="board" th:selected="${search} == 'board'">내용</option>
+                                    <option value="memberid" th:selected="${search} == 'memberid'">작성자</option>
+                                </select>
+                                <input type="hidden" name="page" id="pageNum">
+                                <label for="searchLabel" class="blind">게시판 내용 검색</label>
+                                <input id="search" type="search" name="str" placeholder="검색어를 입력해주세요." th:value="${str}">
+                                <button type="button" class="btn btn-dark" onclick="listSubmit(1);">검색</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            
+             
+                <!-- board list area -->
+            <div id="board-list">
+                <div class="container">
+                    <table class="board-table">
+                        <tr>
+                            <th th:text="${page.total}">내꺼</th>
+                            <!-- <th th:text="${page.totalRecordsCount}">선생님꺼</th> -->
+                            <td colspan="3"></td>
+                            <td>
+                                <div sec:authorize="isAuthenticated()" id="write">
+                                    <input type="button" value="글쓰기" class="btn" onclick="gowrite();">
+                                </div>    
+                            </td>
+                        </tr>
+                        
+                            
+                        <tr id="thead">
+                            <th scope="col" class="th-num">번호</th>
+                            <th scope="col" class="th-title">제목</th>
+                            <th scope="col" class="th-id">글쓴이</th>
+                            <th scope="col" class="th-hits">조회수</th>
+                            <th scope="col" class="th-date">등록일</th>
+                        </tr>
+                                                
+                        <tr th:each="list, i : ${list}" id="tbody">
+                            <th th:text="${page.total - (page.index + i.index)}">글 번호(내꺼)</th>
+                            <!-- <th th:text="${page.totalRecordsCount - (page.startRecord + i.index)}">글 번호(선생님 꺼)</th> -->
+                            <td>
+                                <a th:href="@{/board/view(num=${list.board_no})}" th:text="${list.title}"></a>
+                            </td>
+                            <td th:text="${list.memberid}">작성자</td>
+                            <td th:text="${list.hits}">조회수</td>
+                            <td th:text="${list.boarddate}">작성 시간</td>
+                        </tr>
+                    </table>
+                    <table>
+                            <tr>
+                                <td>
+                                    <input type="button" class="btn" id="prevAll" value="◀◀" th:pageNum="1" th:disabled="${page.page == 1}" onclick="pagePrevAll(this.getAttribute('pageNum'));">
+                                </td>
+                                <td>
+                                    <input type="button" class="btn" id="prev" value="◀" th:page="${page.page}" th:pageCount="${page.showNum}" th:disabled="${page.page == 1}" onclick="pagePrev(this.getAttribute('page'), this.getAttribute('pageCount'));">
+                                </td>
+                                <!-- 내꺼 -->
+                                <td th:each="num : ${#numbers.sequence(page.start, page.end)}">&nbsp;&nbsp;
+                                <!-- 선생님꺼 -->
+                                <!-- <td th:each="num : ${#numbers.sequence(page.startPageGroup, page.endPageGroup)}">&nbsp;&nbsp; -->
+                                    <th:block th:if="${num == page.page}"><b></th:block>
+                                        <a th:href="|javascript:listSubmit(${num})|" th:text="${num}">1</a>&nbsp;&nbsp;
+                                    <th:block th:if="${num == page.page}"><b></th:block>
+                                </td>
+                                <td>
+                                    <input type="button" class="btn" id="next" value="▶" th:page="${page.page}" th:pageCount="${page.showNum}" th:endPage="${page.totalPage}" th:disabled="${page.page == page.totalPage}" onclick="pageNext(this.getAttribute('page'), this.getAttribute('pageCount'), this.getAttribute('endPage'));">
+                                </td>
+                                <td>
+                                    <input type="button" class="btn" id="nextAll" value="▶▶" th:pageNum="${page.totalPage}" th:disabled="${page.page == page.totalPage}" onclick="pageNextAll(this.getAttribute('pageNum'));">
+                                </td>
+                            </tr>
+                        </form>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

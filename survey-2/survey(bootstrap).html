@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>설문 조사</title>
+    <!-- <link rel="stylesheet" href="style/style.css" /> -->
+    <script src="script/survey.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+   
+</head>
+<body>
+        <div id="container"style="text-align: center; ">
+            <h2 class="title" style="text-align: center; ">2018년 국내 공개SW 수요조사</h2>
+            <div class="backimage"><img src="images/computer.png" /></div>
+            <form method="POST">
+            <table border="1" class="table table-striped w-auto" style="margin-left:auto;margin-right:auto;">
+                
+                <tr>
+                    <th><span>*</span> 이름</th>
+                    <td class="input-group mb-3">
+                        <span class="input-group-text">Person</span>
+                        <input type="text" class="form-control" placeholder="First Name">
+                        <input type="text" class="form-control" placeholder="Last Name">
+                      </td>
+                </tr>
+                <tr>
+                    <th><span>*</span> 연락처(전화번호)</th>
+                    
+                        <td class="dropdown">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                              지역번호
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="#">010</a></li>
+                              <li><a class="dropdown-item" href="#">011</a></li>
+                              <li><a class="dropdown-item" href="#">017</a></li>
+                            </ul>
+                        <!-- <select id="phone1" name="phone1" class="survey">
+                            <option value="010">010</option>
+                            <option value="019">019</option>
+                            <option value="018">018</option>
+                            <option value="017">017</option>
+                        </select> -->
+                        <!-- <input id="phone2" class="survey" type="text" name="phone2" placeholder="- 제외하고 숫자만 입력해 주세요."/> -->
+                        <form>
+                            <input type="text" class="form-control mt-3" placeholder="- 제외하고 숫자만 입력해 주세요." style="width: auto;" >
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <th><span>*</span> Email </th>
+                    <td>
+                        <!-- <input id="email" class="survey" type="text" name="email" /> -->
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Your Email" name="email">
+                            <span class="input-group-text">@example.com</span>
+                          </div>
+                    </td>
+                </tr>
+                <tr>
+
+                    <th><span>*</span> IT 직업군</th>
+                    
+                    <td class="dropdown">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                          Dropdown button
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Security Expert</a></li>
+                          <li><a class="dropdown-item" href="#">Network Engineer</a></li>
+                          <li><a class="dropdown-item" href="#">System Engineer</a></li>
+                          <li><a class="dropdown-item" href="#">DB Administrator</a></li>
+                          <li><a class="dropdown-item" href="#">Game Programmer</a></li>
+                          <li><a class="dropdown-item" href="#">System Architector</a></li>
+                          <li><a class="dropdown-item" href="#">Application Developer</a></li>
+                          <li><a class="dropdown-item" href="#">System Operator</a></li>
+
+                          <li><hr class="dropdown-divider"></li>
+                        </ul>
+                      </td>
+<!--                         
+                        <td>
+                            <select id="job" class="survey" name="job">
+                                <option value="Security Expert">Security Expert</option>
+                                <option value="Network Engineer">Network Engineer</option>
+                                <option value="System Engineer">System Engineer</option>
+                                <option value="DB Administrator">DB Administrator</option>
+                                <option value="Game Programmer">Game Programmer</option>
+                                <option value="System Architector">System Architector</option>
+                                <option value="Application Developer">Application Developer</option>
+                                <option value="System Operator">System Operator</option>
+                            </select>
+                        </td> -->
+                </tr>            
+                <tr>
+                    <th colspan="2"><span>*</span> Google 서비스 중 가장 많이 사용하는 것은 무엇입니까?</th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input class="service" type="radio" name="service" value="GMail" /> GMail
+                        <input class="service" type="radio" name="service" value="Calendar" checked/> Calendar
+                        <input class="service" type="radio" name="service" value="주소록" /> 주소록
+                        <input class="service" type="radio" name="service" value="Drive" /> Drive
+                        <input class="service" type="radio" name="service" value="You Tube" /> You Tube
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2"><span>*</span> Google 문서도구 중 그 기능을 좀 더 강화했으면 하는 도구는 무엇입니까?</th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input class="tool" type="checkbox" name="tool" value="구글 워드프레스" checked/>구글 워드프레스
+                        <input class="tool" type="checkbox" name="tool" value="구글 스프레드시트" />구글 스프레드시트
+                        <input class="tool" type="checkbox" name="tool" value="구글 지도" />구글 지도
+                        <input class="tool" type="checkbox" name="tool" value="설문조사" />설문조사
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2"><span>*</span> 기타 남기실 말씀은?</th>
+                </tr>
+                <tr>
+                    <!-- <td colspan="2">
+                        <textarea id="etc" class="survey" name="etc"></textarea>
+                    </td> -->
+                    <td>
+                    <form action="/action_page.php">
+                        <div class="mb-3 mt-3">
+                          <label for="comment">Comments:</label>
+                          <textarea class="form-control" rows="5" cols="33" id="comment" name="text"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="btn" colspan="2">
+                        <input id="btn" type="button"  class="btn btn-outline-success" value="제출" />
+                        <input type="reset" class="btn btn-outline-danger" value="취소" />
+                        
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <div id="result">
+        </div>
+    </div>
+</body>
+</html>

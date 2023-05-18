@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css_sidebar_ex.css">
+</head>
+<body>
+    <div class="container1">
+        <nav>
+            <ul class="mcd-menu">
+                <li>
+                    <a th:href="@{/mypage/mypage}" th:text="#{mypage}" class="aTag">
+                        <strong>마이페이지</strong>
+                        <small>ANABADA</small>
+                    </a>
+                </li>
+
+                <li>
+                    <a th:text="#{mytrade}" class="aTag">
+                        <strong>MY거래</strong>
+                        <small>ANABADA</small>
+                    </a>
+                    <ul>
+                        <li><a th:href="@{/mypage/mytransactionlistall}" th:text="#{tradelist}" class="aTag">거래내역</a></li>
+                        <li><a th:href="@{/mypage/myrentallistall}" th:text="#{rentallist}" class="aTag">렌탈내역</a></li>
+                        <li><a th:href="@{/mypage/myauctionlistall}" th:text="#{auctionlist}" class="aTag">경매내역</a></li>
+                        <li><a th:href="@{/mypage/mywantlistused}" th:text="#{wishlist}" class="aTag">찜 목록</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a th:text="#{mydamagochi}" class="aTag">
+                        <strong>나의 다마고치</strong>
+                        <small>ANABADA</small>
+                    </a>
+                    <ul>
+                        <li><a th:href="@{/mypage/mydamagochi}" th:text="#{mydamagochi}" class="aTag">나의 다마고치</a></li>
+                        <li><a th:href="@{/mypage/damagochishop}" th:text="#{damagochishop}" class="aTag">다마고치 상점</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a th:text="#{customerCenter}" class="aTag">
+                        <strong>고객센터</strong>
+                        <small>ANABADA</small>
+                    </a>
+                    <ul>
+                        <li><a th:href="@{/csform/inquiry}" th:text="#{inquiry}" class="aTag">문의하기</a></li>
+                        <li><a th:href="@{/csform/report}" th:text="#{report}" class="aTag">신고</a></li>
+                        <li><a th:href="@{/mypage/myinquirelist}" th:text="#{myInqList}" class="aTag">나의 문의 내역</a></li>
+                        <li><a th:href="@{/mypage/faqs}" th:text="#{qnaList}" class="aTag">자주 묻는 질문</a></li>
+                        <li><a th:href="@{/mypage/myreportlist}" th:text="#{myReportList}" class="aTag">나의 신고 내역</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+        </div>
+</body>
+</html>

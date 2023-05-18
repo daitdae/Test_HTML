@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열 테스트</title>
+    <script>
+       
+        let ary = [];
+        let ary1 = [1,2,3,4,5];
+        //선형자료
+        let ary2 = ['홍길동', 26, '웹개발자',['010-1111-2222','서울시 성북구']]; //배열안에 배열
+        console.log('직업: '+ary2[2]);
+        console.log('연락처: '+ary2[3][0]); //3번방의 0번 데이터를 꺼내고 싶어
+        
+        
+        ary2.push(178.5);   //맨 뒤에 넣을때
+        
+        ary2.unshift('123'); //맨 앞에 넣을때
+        console.log(ary2);
+        console.log(ary2.length);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

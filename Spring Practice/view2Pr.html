@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>view2Pr.html</title>
+</head>
+<body>
+
+    <!-- id 속성
+            고유한 식별을 목적으로 하는 경우 사용합니다.
+        name 속성
+            form 컨트롤 요소의 값(value)을 서버로 전송하기 위해 필요한 속성입니다.
+    그러므로 서버로 전송을 해야하기 때문에 id가 아닌 name속성을 써줘야 한다. -->
+
+    <h1>[ Post 방식의 parameter 전달 ]</h1>
+
+    <form action="input2Pr" method="post">
+        <label for="id">ID: </label>
+        <input type="text" name="id" required><br>
+
+        <label for="password">PASSWORD: </label>
+        <input type="password" name="password" required><br>
+
+        <label for="name">NAME: </label>
+        <input type="text" name="name"><br>
+
+        <label for="phone">PHONE: </label>
+        <input type="text" name="phone"><br>
+
+        <input type="radio" name="com" value="kt">KT
+        <input type="radio" name="com" value="skt">SKT
+        <input type="radio" name="com" value="lg">LG
+
+        <input type="submit" value="가입">
+
+    </form>
+    
+</body>
+</html>

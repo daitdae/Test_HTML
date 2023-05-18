@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript math 객체</title>
+    <script>    //출력안될때는 f12눌러서 어디서 오류났는지 확인해라
+        window.onload = function(){
+            let target = document.getElementById("target");
+            
+            let num = 2.1234;
+
+            let maxNum = Math.max(10,50,40,70);
+            let minNum = Math.min(10,50,40,70);
+            let roundNum = Math.round(num);
+            let floorNum = Math.floor(num);
+            let ceilNum = Math.ceil(num);
+            let rndNum = Math.random();
+            let pinum = Math.PI;
+
+            let data = `최대값 : ${maxNum}<br>`;
+            data += `최소값: ${minNum}<br>`;
+            data += `소수 첫째 반올림: ${roundNum}<br>`;
+            data += `소수 첫째 내림: ${floorNum}<br>`;
+            data += `소수 첫째 올림: ${ceilNum}<br>`;
+            data += `0~1사이 난수: ${rndNum}<br>`;
+            data += `원주율 상수 반환: ${pinum}`;
+
+            target.innerHTML = data;
+        }
+
+    </script>
+</head>
+<body>
+    <h2 id="target"></h2>
+    
+</body>
+</html>

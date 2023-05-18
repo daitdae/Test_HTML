@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>형제 선택자</title>
+    <style>
+        div+p {
+            background: violet; color: aquamarine;
+        }
+        div.target~p{
+            background: yellowgreen; color: cadetblue;
+        }
+    </style>
+</head>
+<body>
+    <div>인접형제선택자 1</div>
+    <p>인접형제선택자 2</p>
+    <p>인접형제선택자 3</p>
+
+    <div class="target">일반형제선택자 4</div>
+    <p>일반형제선택자 5</p>
+    <p>일반형제선택자 6</p>
+
+    <div>일반형제선택자 7</div>
+    <p>일반형제선택자 8</p>
+    
+</body>
+</html>

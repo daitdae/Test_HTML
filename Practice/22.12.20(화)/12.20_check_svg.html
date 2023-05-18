@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert SVG</title>
+    <script src="D:\JH\HTML\modernizr-custom.js">
+    </script>
+</head>
+<body>
+    <h1>SVG이미지 삽입하기</h1>
+    <img src="D:\workspace\Test_HTML\html5-css3-master\html5-css3-master\03\images\muffin.svg">
+    <script>
+        if(!Modernizr.svg){
+            $("img").attr("srv","D:\workspace\Test_HTML\html5-css3-master\html5-css3-master\03\images\muffin.png")
+        }
+    </script>
+</body>
+</html>

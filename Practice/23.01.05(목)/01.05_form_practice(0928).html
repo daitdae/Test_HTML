@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form_practice</title>
+</head>
+<body>
+    <form action="input" method="GET">
+
+        <label for="usrname">이름: </label>
+        <input name="usrname" type="text">
+        <br>
+
+        <label for="usrid">ID: </label>
+        <input name="usrid" type="text">
+        <br>
+
+        <label for="passwrd">Password:</label>
+        <input name="passwrd" type="password">
+        <br>
+
+        <label for="email">Email:</label>
+        <input name="email" type="email">
+        <br>
+        
+        <label for="location">지역:
+            <input type="radio" name="location" value="서울" checked> 서울
+            <input type="radio" name="location" value="부산"> 부산
+            <input type="radio" name="location" value="대전"> 대전
+            <input type="radio" name="location" value="대구"> 대구
+        </label>
+        <br>
+
+        <label for="gender">성별: 
+            <input type="radio" name="gender" value="남자" checked>남자
+            <input type="radio" name="gender" value="여자">여자
+        </label>
+        <br>
+
+        <label>취미:
+            <input type="checkbox" name="hobby" value="축구"> 축구
+            <input type="checkbox" name="hobby" value="농구"> 농구
+            <input type="checkbox" name="hobby" value="배구"> 배구
+            <input type="checkbox" name="hobby" value="야구"> 야구
+        </label>
+        <br>
+
+        <label>숫자
+            <input type="number">
+        </label>  
+        <br>
+
+        <label>날짜:
+            <input type="date">
+        </label>
+        <br>
+
+        <label>당신의 직업은?      
+            <select name="job">
+                <option>보안전문가</option>
+                <option>서버개발자</option>
+                <option>Dev/Ops 전문가</option>
+                <option>데이터 분석전문가</option>
+                <option>웹 퍼블리셔</option>
+            </select>
+        </label>
+        <br>
+
+        <label>의견
+            <textarea name="opi" rows="5" cols="50"></textarea>
+        </label>
+        </form>
+
+        <form name="picture" action="input" method="POST" enctype="multipart/form-data">
+        <label>사진: </label>
+        <input name="picture" type="file">
+        </form>
+        <br>
+
+        <input type="submit" value="가입"> 
+        <input type="reset" value="리셋"> 
+
+
+
+</body>
+</html>

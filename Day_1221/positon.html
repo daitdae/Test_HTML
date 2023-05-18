@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position</title>
+    <style>
+        
+        div.parent{
+            border: 1px solid #aaa;
+            padding: 10px;
+            position: relative;
+        }
+        div.sibling{
+            background-color: aquamarine;
+            padding: 5px;
+            text-align: center;
+        }
+        div.second{
+            width: 100px;
+            height: 100px;
+            background-color: tomato;
+        }
+        div.static{
+            position: static;
+            top: 20px;
+            left: 20px;
+        }
+
+        div.relative{           /*원래 자기가 static에 있었던 위치를 기준으로 움직인다*/
+            position: relative;
+            top: 20px;
+            left: 20px;
+        }
+
+        div.absolute{   /*자기의 부모중에서 포지션이 있는 부모를 찾는다(기준이 없으면 body부터 기준잡는다) 위로 가버림*/
+            position: absolute; /*좀 찾아보자 잘모르겠음*/
+            top: 20px;
+            left: 20px;
+        }
+
+        div.fixed{
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Position 연습</h1>      <!--static,relative, absulute -->
+    <h2>Static(default)</h2>
+    <div class="parent" id="parent">
+        <div class="sibling">First</div>
+        <div class="second static">Second</div>
+        <div class="sibling">Third</div>
+    </div>
+
+    <h2>Relative</h2>
+    <div class="parent">
+        <div class="sibling">First</div>
+        <div class="second relative">Second</div>
+        <div class="sibling">Third</div>
+    </div>
+
+    <h2>Absolute</h2>
+    <div class="parent">
+        <div class="sibling">First</div>
+        <div class="second absolute">Second</div>
+        <div class="sibling">Third</div>
+    </div>
+
+    <h2>Fixed</h2>      <!--스크린에 고정시킬때 쓴다-->
+    <div class="parent">
+        <div class="sibling">First</div>
+        <div class="second fixed"><a href="#parent">Second</a></div>
+        <div class="sibling">Third</div>
+        
+    </div>
+    
+</body>
+</html>

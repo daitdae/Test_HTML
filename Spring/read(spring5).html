@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <title>글 보기</title>
+    <script>
+        function deleteBoard(n){
+            if(confirm('삭제하시겠습니까?')){
+            location.href='delete?num='+n;
+            // http://localhost8888/spring5/board/delete?num=1 과 같은말 num뒤에는 번호
+            }
+        }
+        function deleteReply(replynum, boardnum ){
+            // function deleteReply(n, m ){
+            if(confirm('삭제하시겠습니까?')){
+            location.href='deleteReply?replynum='+replynum +'&boardnum=' +boardnum;
+            // location.href='deleteReply?num='+n +'&boardnum=' +m;
+            }
+        }
+
+        function validation(){
+            let replytext = document.getElementById('replytext');
+
+            if(replytext.value.length<3){
+                alert("3글자 이상 써주세요");
+                replytext.focus();
+                replytext.select();
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>[ 게시글 읽기]</h1>
+        </header>
+        <section>
+            <form th:action="@{/board/read}" method="get" 
+            enctype="multipart/form-data">
+                <table>
+                    <tr>
+                        <th style="width: 100px;">작성자</th>
+                        <td th:text="${board.memberid}" style="width: 600px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>작성일</th>
+                        <td th:text="${board.inputdate}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>조회수</th>
+                        <td th:text="${board.hits}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>제목</th>
+                        <td th:text="${board.title}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>내용</th>
+                        <td th:text="${board.contents}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>파일첨부</th>
+                        <td>
+                            <a th:text="${board.originfile}" 
+                               th:href="@{/board/download(num=${board.boardnum})}"></a>
+                            <img th:src="@{/board/download(num=${board.boardnum})}"> 
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <!-- 본인글일때만 이게 출력 됨-->
+                <div th:if="${#authentication.name}==${board.memberid}">
+                    <a th:href="@{/board/update(num=${board.boardnum})}">수정</a>    
+                    <!-- <a href="@{/board/delete(num=${board.boardnum})}">삭제</a>  -->
+                    <a th:href="|javascript:deleteBoard(${board.boardnum})|">삭제</a>   
+                </div>
+            </form>
+            <br>
+
+            <!-- 로그인했을때 출력되는 댓글 작성폼 -->
+            <div sec:authorize="isAuthenticated()">
+                <form th:action="@{/board/writeReply}" method="post" onsubmit="return validation()">
+                    <input type="hidden" name="boardnum" th:value="${board.boardnum}">
+                    리플내용: <input type="text" name="replytext" id="replytext" style="width:500px">
+                    <input type="submit" value="확인">
+                </form>
+            </div>
+            <br>
+
+            <!-- 현재글의 댓글을 출력 -->
+            <!-- <table> 
+                내가한건데 이래 하면 로그인한 사람이 아닌 사람이 글을 볼때 댓글이 안보임
+                아마 th:if="${#authentication.name} == ${reply.memberid}">이러글 밑에 삭제에만 넣었어야 하는데 tr전체에 넣어서 안보이는듯 하다
+                <tr th:each="reply : ${replylist}" th:if="${#authentication.name}==${reply.memberid}">
+                    <td th:text="${reply.memberid}" class="center"></td>
+                    <td th:text="${reply.replytext}" class="center" style="width:500px"></td>
+                    <td><a th:href="@{/reply/update(num=${reply.replynum})}">수정</a></td>
+                    자바스크립트 설정이 틀렸었기 대문에 실행이 안됬던 거였음 내가 틀렸던 부분 주석처리했으니 참고하도록
+                    <td><a th:href="|javascript:deleteReply(${reply.replynum},${reply.boardnum})|">삭제</a></td>   
+                </tr>
+            </table> -->
+            <!-- 현재 글의 댓글들 출력 -->
+            <table class="reply">
+                <tr th:each="reply : ${replylist}">
+                    <td class="replyid" th:text="${reply.memberid}"></td>
+                    <td class="replytext" th:text="${reply.replytext}"></td>
+                    <td class="replydate" th:text="${reply.inputdate}"></td>
+                    <td>
+                        <span th:if="${#authentication.name} == ${reply.memberid}">
+                            <a th:href="|javascript:deleteReply(${reply.replynum}, ${reply.boardnum})|">
+                                삭제
+                            </a>
+                        </span>
+                    </td>
+                </tr>	
+            </table>
+        </section>
+    
+</body>
+</html>

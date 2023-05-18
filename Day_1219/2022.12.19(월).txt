@@ -1,0 +1,38 @@
+1) 전체 선택자
+    태그선택자
+    클래스 선택자
+    아이디 선택자
+
+2) 복합선택자
+    하위선택자 : 띄어쓰기
+    자식선택자 : > 기호
+    인접형제선택자 : +
+    일반형제 선택자: ~
+
+3) 가상클래스선택자(Pseudo-Class)
+    :link
+    :visited
+    :hover
+    :active
+    :focus
+    :first-child
+    :last_child
+    :nth-child(n)
+    :enaled
+    :disabled
+    :checked
+
+4) 가상엘리먼트 선택자 - 보이지 않는 가상의 엘리먼트를 선택
+    ::after
+    ::bewfore
+    ::first-letter
+    ::first-line
+    ::selection
+
+5) 속성선택자
+    [A]
+    [A=V]
+    [A~=V]
+    [A^=V]
+    [A$=V]
+    []
